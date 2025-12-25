@@ -1,6 +1,6 @@
 FROM php:8.3-fpm
 
-# Install system dependencies including Node.js
+# Install system dependencies (without Node.js - we'll install it separately for correct version)
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -18,9 +18,18 @@ RUN apt-get update && apt-get install -y \
     nginx \
     supervisor \
     cron \
-    nodejs \
-    npm \
+    ca-certificates \
+    gnupg \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install Node.js 20 LTS (required by EspoCRM - package.json specifies node >=20)
+RUN mkdir -p /etc/apt/keyrings \
+    && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list \
+    && apt-get update \
+    && apt-get install -y nodejs \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    && node --version && npm --version
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -53,9 +62,17 @@ COPY . /var/www/html
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Install npm dependencies and build frontend assets
-RUN npm install \
+# The build creates: client/lib/espo.js, client/lib/espo-*.js, client/css/espo/*.css
+RUN echo "Starting frontend build..." \
+    && npm install --legacy-peer-deps \
+    && echo "Running grunt internal (build-frontend)..." \
     && npm run build-frontend \
-    && npm prune --production \
+    && echo "Verifying build output..." \
+    && ls -la client/lib/ \
+    && ls -la client/css/espo/ \
+    && test -f client/lib/espo.js || (echo "ERROR: client/lib/espo.js not found!" && exit 1) \
+    && test -f client/css/espo/espo.css || (echo "ERROR: client/css/espo/espo.css not found!" && exit 1) \
+    && echo "Frontend build completed successfully!" \
     && rm -rf node_modules
 
 # Copy nginx configuration
@@ -76,6 +93,9 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/data \
     && chmod -R 775 /var/www/html/custom \
     && chmod -R 775 /var/www/html/client/custom \
+    && chmod -R 755 /var/www/html/client/lib \
+    && chmod -R 755 /var/www/html/client/css \
+    && chmod -R 755 /var/www/html/client/img \
     && find /var/www/html -name ".htaccess" -type f -exec chmod 644 {} \;
 
 # Configure PHP

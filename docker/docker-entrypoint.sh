@@ -24,6 +24,34 @@ else
     echo "Warning: Public directory not found!"
 fi
 
+# Verify frontend assets are present (built during Docker image build)
+echo "Verifying frontend assets..."
+if [ -f "/var/www/html/client/lib/espo.js" ]; then
+    echo "✓ client/lib/espo.js found"
+else
+    echo "✗ WARNING: client/lib/espo.js NOT found - frontend may not work!"
+fi
+
+if [ -f "/var/www/html/client/css/espo/espo.css" ]; then
+    echo "✓ client/css/espo/espo.css found"
+else
+    echo "✗ WARNING: client/css/espo/espo.css NOT found - frontend may not work!"
+fi
+
+if [ -f "/var/www/html/client/img/favicon.ico" ]; then
+    echo "✓ client/img/favicon.ico found"
+else
+    echo "✗ WARNING: client/img/favicon.ico NOT found!"
+fi
+
+if [ -f "/var/www/html/client/img/logo-light.svg" ]; then
+    echo "✓ client/img/logo-light.svg found"
+else
+    echo "✗ WARNING: client/img/logo-light.svg NOT found!"
+fi
+
+echo "Frontend asset verification complete."
+
 # Set proper permissions
 chown -R www-data:www-data /var/www/html/data
 chown -R www-data:www-data /var/www/html/custom
@@ -35,6 +63,10 @@ chmod -R 775 /var/www/html/custom
 chmod -R 775 /var/www/html/client/custom
 chmod -R 755 /var/www/html/public
 chmod -R 755 /var/www/html/install
+
+# Ensure client directory and its contents are readable by nginx
+chmod -R 755 /var/www/html/client
+chown -R www-data:www-data /var/www/html/client
 
 # If config.php doesn't exist and we have environment variables, create it
 if [ ! -f "/var/www/html/data/config.php" ] && [ -n "$DATABASE_HOST" ]; then
