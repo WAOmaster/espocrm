@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libldap2-dev \
     libssl-dev \
+    libpq-dev \
     zip \
     unzip \
     nginx \
@@ -31,11 +32,13 @@ RUN mkdir -p /etc/apt/keyrings \
     && apt-get clean && rm -rf /var/lib/apt/lists/* \
     && node --version && npm --version
 
-# Install PHP extensions
+# Install PHP extensions (includes both MySQL and PostgreSQL support)
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
     && docker-php-ext-install -j$(nproc) \
     pdo_mysql \
+    pdo_pgsql \
+    pgsql \
     mbstring \
     exif \
     pcntl \
