@@ -71,49 +71,60 @@ chown -R www-data:www-data /var/www/html/client
 # If config.php doesn't exist and we have environment variables, create it
 if [ ! -f "/var/www/html/data/config.php" ] && [ -n "$DATABASE_HOST" ]; then
     echo "Creating initial config.php from environment variables..."
+
+    # Determine database platform (default to MySQL)
+    DB_PLATFORM="${DATABASE_PLATFORM:-Mysql}"
+    DB_PORT="${DATABASE_PORT:-3306}"
+
+    # Adjust default port for PostgreSQL
+    if [ "$DB_PLATFORM" = "Postgresql" ] && [ -z "$DATABASE_PORT" ]; then
+        DB_PORT="5432"
+    fi
+
     cat > /var/www/html/data/config.php <<EOF
 <?php
 return [
+    'isInstalled' => true,
     'database' => [
-        'host' => '${DATABASE_HOST:-localhost}',
-        'port' => '${DATABASE_PORT:-3306}',
+        'host' => '${DATABASE_HOST}',
+        'port' => '${DB_PORT}',
         'charset' => 'utf8mb4',
         'dbname' => '${DATABASE_NAME:-espocrm}',
-        'user' => '${DATABASE_USER:-root}',
+        'user' => '${DATABASE_USER:-espocrm}',
         'password' => '${DATABASE_PASSWORD:-}',
-        'driver' => 'pdo_mysql',
+        'platform' => '${DB_PLATFORM}',
     ],
     'siteUrl' => '${SITE_URL:-https://example.com}',
     'useCache' => true,
     'recordsPerPage' => 20,
     'recordsPerPageSmall' => 5,
-    'applicationName' => 'EspoCRM',
+    'applicationName' => '${APP_NAME:-EspoCRM}',
     'version' => '9.2.5',
-    'timeZone' => 'Asia/Colombo',
+    'timeZone' => '${TIMEZONE:-UTC}',
     'dateFormat' => 'DD/MM/YYYY',
     'timeFormat' => 'HH:mm',
     'weekStart' => 1,
     'thousandSeparator' => ',',
     'decimalMark' => '.',
     'exportDelimiter' => ',',
-    'currency' => 'LKR',
-    'baseCurrency' => 'LKR',
-    'defaultCurrency' => 'LKR',
+    'currency' => '${DEFAULT_CURRENCY:-USD}',
+    'baseCurrency' => '${DEFAULT_CURRENCY:-USD}',
+    'defaultCurrency' => '${DEFAULT_CURRENCY:-USD}',
     'currencyRates' => [],
     'currencyNoJoinMode' => false,
     'outboundEmailIsShared' => true,
     'outboundEmailFromName' => 'EspoCRM',
-    'outboundEmailFromAddress' => 'crm@example.com',
-    'smtpServer' => '',
-    'smtpPort' => 587,
+    'outboundEmailFromAddress' => '${OUTBOUND_EMAIL:-crm@example.com}',
+    'smtpServer' => '${SMTP_SERVER:-}',
+    'smtpPort' => ${SMTP_PORT:-587},
     'smtpAuth' => true,
     'smtpSecurity' => 'TLS',
-    'smtpUsername' => '',
-    'smtpPassword' => '',
-    'language' => 'en_US',
+    'smtpUsername' => '${SMTP_USERNAME:-}',
+    'smtpPassword' => '${SMTP_PASSWORD:-}',
+    'language' => '${LANGUAGE:-en_US}',
     'logger' => [
         'path' => 'data/logs/espo.log',
-        'level' => 'WARNING',
+        'level' => '${LOG_LEVEL:-WARNING}',
         'rotation' => true,
         'maxFileNumber' => 30,
     ],
@@ -133,7 +144,7 @@ return [
 EOF
     chown www-data:www-data /var/www/html/data/config.php
     chmod 644 /var/www/html/data/config.php
-    echo "Config.php created successfully."
+    echo "Config.php created successfully with isInstalled=true."
 fi
 
 # Clear cache on startup

@@ -21,6 +21,23 @@ steps:
       - 'gcr.io/$PROJECT_ID/espocrm:latest'
 
   # Deploy to Cloud Run
+  # IMPORTANT: Database environment variables must be configured for EspoCRM to work.
+  # Set these via Cloud Run console, gcloud, or use --set-secrets for Secret Manager.
+  #
+  # Required environment variables:
+  #   DATABASE_HOST     - Database host (e.g., /cloudsql/project:region:instance for Cloud SQL)
+  #   DATABASE_NAME     - Database name (default: espocrm)
+  #   DATABASE_USER     - Database username (default: espocrm)
+  #   DATABASE_PASSWORD - Database password
+  #   SITE_URL          - Public URL of your EspoCRM instance
+  #
+  # Optional environment variables:
+  #   DATABASE_PLATFORM - 'Mysql' (default) or 'Postgresql'
+  #   DATABASE_PORT     - Database port (default: 3306 for MySQL, 5432 for PostgreSQL)
+  #   APP_NAME          - Application name (default: EspoCRM)
+  #   TIMEZONE          - Timezone (default: UTC)
+  #   LOG_LEVEL         - Log level: DEBUG, INFO, NOTICE, WARNING, ERROR (default: WARNING)
+  #
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -42,6 +59,11 @@ steps:
       - '1'
       - '--timeout'
       - '300'
+      # Uncomment and configure for Cloud SQL connection:
+      # - '--add-cloudsql-instances'
+      # - 'PROJECT_ID:REGION:INSTANCE_NAME'
+      # - '--set-env-vars'
+      # - 'DATABASE_HOST=/cloudsql/PROJECT_ID:REGION:INSTANCE_NAME'
 
 # Use Cloud Logging only (fixes the service account error)
 options:
