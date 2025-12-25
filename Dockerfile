@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     cron \
     ca-certificates \
     gnupg \
+    netcat-openbsd \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Node.js 20 LTS (required by EspoCRM - package.json specifies node >=20)
@@ -82,12 +83,19 @@ RUN echo "Starting frontend build..." \
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 COPY docker/default.conf /etc/nginx/sites-available/default
 
+# Copy PHP-FPM configuration (optimized for Cloud Run)
+COPY docker/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+
 # Copy supervisor configuration
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copy entrypoint script
 COPY docker/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+# Copy nginx startup script (waits for PHP-FPM)
+COPY docker/nginx-start.sh /usr/local/bin/nginx-start.sh
+RUN chmod +x /usr/local/bin/nginx-start.sh
 
 # Set permissions - create directories first, then set permissions only on existing files
 RUN chown -R www-data:www-data /var/www/html \
@@ -101,9 +109,9 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/client/img \
     && find /var/www/html -name ".htaccess" -type f -exec chmod 644 {} \;
 
-# Configure PHP
+# Configure PHP (memory_limit set in php-fpm.conf for per-worker control)
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
-    && echo "memory_limit=512M" >> "$PHP_INI_DIR/php.ini" \
+    && echo "memory_limit=256M" >> "$PHP_INI_DIR/php.ini" \
     && echo "max_execution_time=180" >> "$PHP_INI_DIR/php.ini" \
     && echo "max_input_time=180" >> "$PHP_INI_DIR/php.ini" \
     && echo "post_max_size=50M" >> "$PHP_INI_DIR/php.ini" \
