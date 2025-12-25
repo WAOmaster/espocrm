@@ -1,6 +1,6 @@
 FROM php:8.3-fpm
 
-# Install system dependencies
+# Install system dependencies including Node.js
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y \
     nginx \
     supervisor \
     cron \
+    nodejs \
+    npm \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
@@ -49,6 +51,12 @@ COPY . /var/www/html
 
 # Install Composer dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Install npm dependencies and build frontend assets
+RUN npm install \
+    && npm run build-frontend \
+    && npm prune --production \
+    && rm -rf node_modules
 
 # Copy nginx configuration
 COPY docker/nginx.conf /etc/nginx/nginx.conf
