@@ -232,6 +232,10 @@ InstallScript.prototype.step3 = function() {
 						self.showMsg({msg: self.getLang(ajaxData.errorMsg, 'messages'), error: true});
 					}
 				})
+				.fail(function(){
+					$("#next").removeAttr('disabled');
+					self.showMsg({msg: self.getLang('Ajax failed', 'messages'), error: true});
+				})
 			},
 			error: function(msg) {
 				$("#next").removeAttr('disabled');
@@ -273,7 +277,14 @@ InstallScript.prototype.step4 = function() {
 		.done(ajaxData => {
 			if (typeof(ajaxData) != 'undefined' && ajaxData.success) {
 				self.goTo(nextAction);
+			} else {
+				$("#next").removeAttr('disabled');
+				self.showMsg({msg: self.getLang(ajaxData.errorMsg || 'Error saving preferences', 'messages'), error: true});
 			}
+		})
+		.fail(() => {
+			$("#next").removeAttr('disabled');
+			self.showMsg({msg: self.getLang('Ajax failed', 'messages'), error: true});
 		});
 	})
 }
