@@ -31,6 +31,7 @@ namespace Espo\Core\Log;
 
 use Espo\Core\Application\ApplicationParams;
 use Espo\Core\ApplicationState;
+use Espo\Core\Log\Handler\CloudRunHandler;
 use Espo\Core\Log\Handler\DatabaseHandler;
 use Espo\Core\Log\Handler\EspoFileHandler;
 use Espo\Core\Log\Handler\EspoRotatingFileHandler;
@@ -73,6 +74,11 @@ class LogLoader
 
         if ($this->config->get('logger.databaseHandler')) {
             $handlerList[] = $this->createDatabaseHandler();
+        }
+
+        // Add Cloud Run structured logging handler when running in Cloud Run
+        if ($this->isCloudRunEnvironment()) {
+            $handlerList[] = $this->createCloudRunHandler();
         }
 
         foreach ($handlerList as $handler) {
@@ -126,5 +132,29 @@ class LogLoader
         $level = Logger::toMonologLevel($rawLevel);
 
         return new DatabaseHandler($level, $this->entityManagerProxy, $this->applicationState);
+    }
+
+    /**
+     * Check if running in Google Cloud Run environment.
+     * Cloud Run sets K_SERVICE environment variable.
+     */
+    private function isCloudRunEnvironment(): bool
+    {
+        return getenv('K_SERVICE') !== false;
+    }
+
+    /**
+     * Create a handler for Cloud Run structured logging.
+     * Outputs JSON-formatted logs to stderr for Cloud Logging integration.
+     */
+    private function createCloudRunHandler(): HandlerInterface
+    {
+        $level = $this->config->get('logger.level') ?? self::DEFAULT_LEVEL;
+        $levelCode = Logger::toMonologLevel($level);
+
+        $handler = new CloudRunHandler($levelCode);
+        $handler->setFormatter(new CloudRunFormatter());
+
+        return $handler;
     }
 }
