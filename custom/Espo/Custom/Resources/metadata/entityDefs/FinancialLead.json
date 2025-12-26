@@ -565,9 +565,6 @@
         "nicNumber": {
             "columns": ["nicNumber", "deleted"]
         },
-        "emailAddress": {
-            "columns": ["emailAddress", "deleted"]
-        },
         "createdAt": {
             "columns": ["createdAt", "deleted"]
         },
