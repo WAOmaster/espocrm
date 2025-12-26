@@ -565,9 +565,6 @@
         "nicNumber": {
             "columns": ["nicNumber", "deleted"]
         },
-        "phoneNumber": {
-            "columns": ["phoneNumber", "deleted"]
-        },
         "emailAddress": {
             "columns": ["emailAddress", "deleted"]
         },
