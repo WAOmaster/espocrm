@@ -97,6 +97,69 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 COPY docker/nginx-start.sh /usr/local/bin/nginx-start.sh
 RUN chmod +x /usr/local/bin/nginx-start.sh
 
+# Create pre-configured config.php for MySQL database
+RUN cat > /var/www/html/data/config.php <<'EOF'
+<?php
+return [
+    'database' => [
+        'host' => '34.22.223.99',
+        'port' => '3306',
+        'charset' => 'utf8mb4',
+        'dbname' => 'espocrm_fresh',
+        'user' => 'root',
+        'password' => 'EspoCRM2025',
+        'driver' => 'pdo_mysql',
+        'platform' => 'Mysql',
+    ],
+    'siteUrl' => 'https://espocrm-1050025521391.europe-west1.run.app',
+    'useCache' => true,
+    'recordsPerPage' => 20,
+    'recordsPerPageSmall' => 5,
+    'applicationName' => 'EspoCRM',
+    'version' => '9.2.5',
+    'timeZone' => 'Asia/Colombo',
+    'dateFormat' => 'DD/MM/YYYY',
+    'timeFormat' => 'HH:mm',
+    'weekStart' => 1,
+    'thousandSeparator' => ',',
+    'decimalMark' => '.',
+    'exportDelimiter' => ',',
+    'currency' => 'LKR',
+    'baseCurrency' => 'LKR',
+    'defaultCurrency' => 'LKR',
+    'currencyRates' => [],
+    'currencyNoJoinMode' => false,
+    'outboundEmailIsShared' => true,
+    'outboundEmailFromName' => 'EspoCRM',
+    'outboundEmailFromAddress' => 'crm@example.com',
+    'smtpServer' => '',
+    'smtpPort' => 587,
+    'smtpAuth' => true,
+    'smtpSecurity' => 'TLS',
+    'smtpUsername' => '',
+    'smtpPassword' => '',
+    'language' => 'en_US',
+    'logger' => [
+        'path' => 'data/logs/espo.log',
+        'level' => 'WARNING',
+        'rotation' => true,
+        'maxFileNumber' => 30,
+    ],
+    'authenticationMethod' => 'Espo',
+    'globalSearchMaxSize' => 10,
+    'passwordRecoveryDisabled' => false,
+    'passwordRecoveryForAdminDisabled' => false,
+    'passwordRecoveryForInternalUsersDisabled' => false,
+    'passwordRecoveryNoExposure' => false,
+    'emailKeepParentTeamsEntityList' => ['Case'],
+    'streamEmailWithContentEntityTypeList' => ['Case'],
+    'recordListMaxSizeLimit' => 200,
+    'noteDeleteThresholdPeriod' => '1 month',
+    'noteEditThresholdPeriod' => '7 days',
+    'cleanupDeletedRecords' => true,
+];
+EOF
+
 # Set permissions - create directories first, then set permissions only on existing files
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
@@ -107,7 +170,9 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/client/lib \
     && chmod -R 755 /var/www/html/client/css \
     && chmod -R 755 /var/www/html/client/img \
-    && find /var/www/html -name ".htaccess" -type f -exec chmod 644 {} \;
+    && find /var/www/html -name ".htaccess" -type f -exec chmod 644 {} \; \
+    && chmod 644 /var/www/html/data/config.php \
+    && chown www-data:www-data /var/www/html/data/config.php
 
 # Configure PHP (memory_limit set in php-fpm.conf for per-worker control)
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
