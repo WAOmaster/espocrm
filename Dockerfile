@@ -98,67 +98,67 @@ COPY docker/nginx-start.sh /usr/local/bin/nginx-start.sh
 RUN chmod +x /usr/local/bin/nginx-start.sh
 
 # Create pre-configured config.php for MySQL database
-RUN cat > /var/www/html/data/config.php <<'EOF'
-<?php
-return [
-    'database' => [
-        'host' => '34.22.223.99',
-        'port' => '3306',
-        'charset' => 'utf8mb4',
-        'dbname' => 'espocrm_fresh',
-        'user' => 'root',
-        'password' => 'EspoCRM2025',
-        'driver' => 'pdo_mysql',
-        'platform' => 'Mysql',
-    ],
-    'siteUrl' => 'https://espocrm-1050025521391.europe-west1.run.app',
-    'useCache' => true,
-    'recordsPerPage' => 20,
-    'recordsPerPageSmall' => 5,
-    'applicationName' => 'EspoCRM',
-    'version' => '9.2.5',
-    'timeZone' => 'Asia/Colombo',
-    'dateFormat' => 'DD/MM/YYYY',
-    'timeFormat' => 'HH:mm',
-    'weekStart' => 1,
-    'thousandSeparator' => ',',
-    'decimalMark' => '.',
-    'exportDelimiter' => ',',
-    'currency' => 'LKR',
-    'baseCurrency' => 'LKR',
-    'defaultCurrency' => 'LKR',
-    'currencyRates' => [],
-    'currencyNoJoinMode' => false,
-    'outboundEmailIsShared' => true,
-    'outboundEmailFromName' => 'EspoCRM',
-    'outboundEmailFromAddress' => 'crm@example.com',
-    'smtpServer' => '',
-    'smtpPort' => 587,
-    'smtpAuth' => true,
-    'smtpSecurity' => 'TLS',
-    'smtpUsername' => '',
-    'smtpPassword' => '',
-    'language' => 'en_US',
-    'logger' => [
-        'path' => 'data/logs/espo.log',
-        'level' => 'WARNING',
-        'rotation' => true,
-        'maxFileNumber' => 30,
-    ],
-    'authenticationMethod' => 'Espo',
-    'globalSearchMaxSize' => 10,
-    'passwordRecoveryDisabled' => false,
-    'passwordRecoveryForAdminDisabled' => false,
-    'passwordRecoveryForInternalUsersDisabled' => false,
-    'passwordRecoveryNoExposure' => false,
-    'emailKeepParentTeamsEntityList' => ['Case'],
-    'streamEmailWithContentEntityTypeList' => ['Case'],
-    'recordListMaxSizeLimit' => 200,
-    'noteDeleteThresholdPeriod' => '1 month',
-    'noteEditThresholdPeriod' => '7 days',
-    'cleanupDeletedRecords' => true,
-];
-EOF
+RUN printf '%s\n' \
+'<?php' \
+'return [' \
+'    "database" => [' \
+'        "host" => "34.22.223.99",' \
+'        "port" => "3306",' \
+'        "charset" => "utf8mb4",' \
+'        "dbname" => "espocrm_fresh",' \
+'        "user" => "root",' \
+'        "password" => "EspoCRM2025",' \
+'        "driver" => "pdo_mysql",' \
+'        "platform" => "Mysql",' \
+'    ],' \
+'    "siteUrl" => "https://espocrm-1050025521391.europe-west1.run.app",' \
+'    "useCache" => true,' \
+'    "recordsPerPage" => 20,' \
+'    "recordsPerPageSmall" => 5,' \
+'    "applicationName" => "EspoCRM",' \
+'    "version" => "9.2.5",' \
+'    "timeZone" => "Asia/Colombo",' \
+'    "dateFormat" => "DD/MM/YYYY",' \
+'    "timeFormat" => "HH:mm",' \
+'    "weekStart" => 1,' \
+'    "thousandSeparator" => ",",' \
+'    "decimalMark" => ".",' \
+'    "exportDelimiter" => ",",' \
+'    "currency" => "LKR",' \
+'    "baseCurrency" => "LKR",' \
+'    "defaultCurrency" => "LKR",' \
+'    "currencyRates" => [],' \
+'    "currencyNoJoinMode" => false,' \
+'    "outboundEmailIsShared" => true,' \
+'    "outboundEmailFromName" => "EspoCRM",' \
+'    "outboundEmailFromAddress" => "crm@example.com",' \
+'    "smtpServer" => "",' \
+'    "smtpPort" => 587,' \
+'    "smtpAuth" => true,' \
+'    "smtpSecurity" => "TLS",' \
+'    "smtpUsername" => "",' \
+'    "smtpPassword" => "",' \
+'    "language" => "en_US",' \
+'    "logger" => [' \
+'        "path" => "data/logs/espo.log",' \
+'        "level" => "WARNING",' \
+'        "rotation" => true,' \
+'        "maxFileNumber" => 30,' \
+'    ],' \
+'    "authenticationMethod" => "Espo",' \
+'    "globalSearchMaxSize" => 10,' \
+'    "passwordRecoveryDisabled" => false,' \
+'    "passwordRecoveryForAdminDisabled" => false,' \
+'    "passwordRecoveryForInternalUsersDisabled" => false,' \
+'    "passwordRecoveryNoExposure" => false,' \
+'    "emailKeepParentTeamsEntityList" => ["Case"],' \
+'    "streamEmailWithContentEntityTypeList" => ["Case"],' \
+'    "recordListMaxSizeLimit" => 200,' \
+'    "noteDeleteThresholdPeriod" => "1 month",' \
+'    "noteEditThresholdPeriod" => "7 days",' \
+'    "cleanupDeletedRecords" => true,' \
+'];' \
+> /var/www/html/data/config.php
 
 # Set permissions - create directories first, then set permissions only on existing files
 RUN chown -R www-data:www-data /var/www/html \
