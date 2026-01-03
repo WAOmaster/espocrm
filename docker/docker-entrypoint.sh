@@ -68,22 +68,30 @@ chmod -R 755 /var/www/html/install
 chmod -R 755 /var/www/html/client
 chown -R www-data:www-data /var/www/html/client
 
-# If config.php doesn't exist and we have environment variables, create it
-if [ ! -f "/var/www/html/data/config.php" ] && [ -n "$DATABASE_HOST" ]; then
-    echo "Creating initial config.php from environment variables..."
-    cat > /var/www/html/data/config.php <<EOF
+# Create config.php if it doesn't exist
+if [ ! -f "/var/www/html/data/config.php" ]; then
+    echo "Config.php not found. Checking installation status..."
+
+    # Check if database is already installed by looking for user table
+    DB_INSTALLED=$(mysql -h 34.22.223.99 -u root -pEspoCRM2025 espocrm_fresh -N -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='espocrm_fresh' AND table_name='user';" 2>/dev/null || echo "0")
+
+    if [ "$DB_INSTALLED" = "1" ]; then
+        echo "Database is already installed. Creating full config.php..."
+        cat > /var/www/html/data/config.php <<EOF
 <?php
 return [
     'database' => [
-        'host' => '${DATABASE_HOST:-localhost}',
-        'port' => '${DATABASE_PORT:-3306}',
+        'host' => '34.22.223.99',
+        'port' => '3306',
         'charset' => 'utf8mb4',
-        'dbname' => '${DATABASE_NAME:-espocrm}',
-        'user' => '${DATABASE_USER:-root}',
-        'password' => '${DATABASE_PASSWORD:-}',
+        'dbname' => 'espocrm_fresh',
+        'user' => 'root',
+        'password' => 'EspoCRM2025',
         'driver' => 'pdo_mysql',
+        'platform' => 'Mysql',
     ],
-    'siteUrl' => '${SITE_URL:-https://example.com}',
+    'isInstalled' => true,
+    'siteUrl' => 'https://espocrm-1050025521391.europe-west1.run.app',
     'useCache' => true,
     'recordsPerPage' => 20,
     'recordsPerPageSmall' => 5,
@@ -131,6 +139,24 @@ return [
     'cleanupDeletedRecords' => true,
 ];
 EOF
+    else
+        echo "Database not installed. Creating minimal config.php for installation wizard..."
+        cat > /var/www/html/data/config.php <<EOF
+<?php
+return [
+    'database' => [
+        'host' => '34.22.223.99',
+        'port' => '3306',
+        'charset' => 'utf8mb4',
+        'dbname' => 'espocrm_fresh',
+        'user' => 'root',
+        'password' => 'EspoCRM2025',
+        'driver' => 'pdo_mysql',
+        'platform' => 'Mysql',
+    ],
+];
+EOF
+    fi
     chown www-data:www-data /var/www/html/data/config.php
     chmod 644 /var/www/html/data/config.php
     echo "Config.php created successfully."

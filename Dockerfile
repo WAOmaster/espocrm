@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     gnupg \
     netcat-openbsd \
+    default-mysql-client \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Node.js 20 LTS (required by EspoCRM - package.json specifies node >=20)
@@ -97,8 +98,8 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 COPY docker/nginx-start.sh /usr/local/bin/nginx-start.sh
 RUN chmod +x /usr/local/bin/nginx-start.sh
 
-# Create minimal config.php for MySQL database (installer will complete the setup)
-RUN printf "<?php\nreturn [\n    'database' => [\n        'host' => '34.22.223.99',\n        'port' => '3306',\n        'charset' => 'utf8mb4',\n        'dbname' => 'espocrm_fresh',\n        'user' => 'root',\n        'password' => 'EspoCRM2025',\n        'driver' => 'pdo_mysql',\n        'platform' => 'Mysql',\n    ],\n];\n" > /var/www/html/data/config.php
+# Don't create config.php here - let entrypoint script handle it dynamically
+# This allows the container to detect if installation is already complete
 
 # Set permissions - create directories first, then set permissions only on existing files
 RUN chown -R www-data:www-data /var/www/html \
