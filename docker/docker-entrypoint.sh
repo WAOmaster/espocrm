@@ -91,17 +91,17 @@ if [ ! -f "/var/www/html/data/config.php" ]; then
 <?php
 return [
     'database' => [
-        'host' => '$DB_HOST',
-        'port' => '$DB_PORT',
+        'host' => '${DB_HOST}',
+        'port' => '${DB_PORT}',
         'charset' => 'utf8mb4',
-        'dbname' => '$DB_NAME',
-        'user' => '$DB_USER',
-        'password' => '$DB_PASSWORD',
+        'dbname' => '${DB_NAME}',
+        'user' => '${DB_USER}',
+        'password' => '${DB_PASSWORD}',
         'driver' => 'pdo_mysql',
         'platform' => 'Mysql',
     ],
     'isInstalled' => true,
-    'siteUrl' => '$SITE_URL',
+    'siteUrl' => '${SITE_URL}',
     'useCache' => true,
     'recordsPerPage' => 20,
     'recordsPerPageSmall' => 5,
@@ -155,12 +155,12 @@ EOF
 <?php
 return [
     'database' => [
-        'host' => '$DB_HOST',
-        'port' => '$DB_PORT',
+        'host' => '${DB_HOST}',
+        'port' => '${DB_PORT}',
         'charset' => 'utf8mb4',
-        'dbname' => '$DB_NAME',
-        'user' => '$DB_USER',
-        'password' => '$DB_PASSWORD',
+        'dbname' => '${DB_NAME}',
+        'user' => '${DB_USER}',
+        'password' => '${DB_PASSWORD}',
         'driver' => 'pdo_mysql',
         'platform' => 'Mysql',
     ],
