@@ -169,7 +169,7 @@ if [ -f "/var/www/html/data/config.php" ]; then
     echo "Cache cleared."
 
     echo "Running rebuild..."
-    php rebuild.php
+    su -s /bin/bash www-data -c "php rebuild.php"
     echo "Rebuild complete."
 fi
 
