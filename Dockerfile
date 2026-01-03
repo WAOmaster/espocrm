@@ -111,9 +111,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/client/lib \
     && chmod -R 755 /var/www/html/client/css \
     && chmod -R 755 /var/www/html/client/img \
-    && find /var/www/html -name ".htaccess" -type f -exec chmod 644 {} \; \
-    && chmod 644 /var/www/html/data/config.php \
-    && chown www-data:www-data /var/www/html/data/config.php
+    && find /var/www/html -name ".htaccess" -type f -exec chmod 644 {} \;
 
 # Configure PHP (memory_limit set in php-fpm.conf for per-worker control)
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
