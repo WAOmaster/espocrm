@@ -37,7 +37,7 @@ steps:
       - '--port'
       - '8080'
       - '--memory'
-      - '2GiB'
+      - '2Gi'
       - '--cpu'
       - '1'
       - '--timeout'
