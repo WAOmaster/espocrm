@@ -117,8 +117,8 @@ RUN chown -R www-data:www-data /var/www/html \
 # Configure PHP (memory_limit set in php-fpm.conf for per-worker control)
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
     && echo "memory_limit=256M" >> "$PHP_INI_DIR/php.ini" \
-    && echo "max_execution_time=180" >> "$PHP_INI_DIR/php.ini" \
-    && echo "max_input_time=180" >> "$PHP_INI_DIR/php.ini" \
+    && echo "max_execution_time=600" >> "$PHP_INI_DIR/php.ini" \
+    && echo "max_input_time=600" >> "$PHP_INI_DIR/php.ini" \
     && echo "post_max_size=50M" >> "$PHP_INI_DIR/php.ini" \
     && echo "upload_max_filesize=50M" >> "$PHP_INI_DIR/php.ini"
 
