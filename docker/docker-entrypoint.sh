@@ -167,6 +167,10 @@ if [ -f "/var/www/html/data/config.php" ]; then
     echo "Clearing cache..."
     rm -rf /var/www/html/data/cache/*
     echo "Cache cleared."
+
+    echo "Running rebuild..."
+    php rebuild.php
+    echo "Rebuild complete."
 fi
 
 # Create log directory for nginx and supervisor
