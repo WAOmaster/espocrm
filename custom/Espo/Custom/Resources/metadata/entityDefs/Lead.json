@@ -1,54 +1,5 @@
 {
     "fields": {
-        "name": {
-            "type": "personName",
-            "isPersonalData": true,
-            "required": true
-        },
-        "salutationName": {
-            "type": "enum",
-            "options": ["", "Mr.", "Ms.", "Mrs.", "Dr."]
-        },
-        "firstName": {
-            "type": "varchar",
-            "maxLength": 100,
-            "required": true
-        },
-        "lastName": {
-            "type": "varchar",
-            "maxLength": 100,
-            "required": true
-        },
-        "status": {
-            "type": "enum",
-            "options": [
-                "New",
-                "Contact Attempted",
-                "Contacted",
-                "Information Gathering",
-                "Document Collection",
-                "Credit Check",
-                "Qualified",
-                "Converted",
-                "Lost"
-            ],
-            "default": "New",
-            "style": {
-                "New": "default",
-                "Contact Attempted": "warning",
-                "Contacted": "primary",
-                "Information Gathering": "primary",
-                "Document Collection": "primary",
-                "Credit Check": "warning",
-                "Qualified": "success",
-                "Converted": "success",
-                "Lost": "danger"
-            },
-            "displayAsLabel": true,
-            "labelType": "state",
-            "audited": true,
-            "required": true
-        },
         "dateOfBirth": {
             "type": "date",
             "isPersonalData": true,
@@ -56,12 +7,23 @@
         },
         "gender": {
             "type": "enum",
-            "options": ["", "Male", "Female", "Other"],
+            "options": [
+                "",
+                "Male",
+                "Female",
+                "Other"
+            ],
             "isPersonalData": true
         },
         "maritalStatus": {
             "type": "enum",
-            "options": ["", "Single", "Married", "Divorced", "Widowed"],
+            "options": [
+                "",
+                "Single",
+                "Married",
+                "Divorced",
+                "Widowed"
+            ],
             "isPersonalData": true
         },
         "nicNumber": {
@@ -76,40 +38,6 @@
             "maxLength": 20,
             "isPersonalData": true,
             "tooltip": "Passport number if NIC not available"
-        },
-        "emailAddress": {
-            "type": "email",
-            "isPersonalData": true,
-            "required": true
-        },
-        "phoneNumber": {
-            "type": "phone",
-            "typeList": ["Mobile", "Office", "Home", "Other"],
-            "defaultType": "Mobile",
-            "isPersonalData": true,
-            "required": true
-        },
-        "address": {
-            "type": "address",
-            "isPersonalData": true
-        },
-        "addressStreet": {
-            "type": "text",
-            "maxLength": 255,
-            "dbType": "varchar"
-        },
-        "addressCity": {
-            "type": "varchar"
-        },
-        "addressState": {
-            "type": "varchar"
-        },
-        "addressCountry": {
-            "type": "varchar",
-            "default": "Sri Lanka"
-        },
-        "addressPostalCode": {
-            "type": "varchar"
         },
         "employmentType": {
             "type": "enum",
@@ -142,10 +70,6 @@
             "tooltip": "Monthly salary or income in LKR",
             "audited": true
         },
-        "monthlyIncomeConverted": {
-            "type": "currencyConverted",
-            "readOnly": true
-        },
         "additionalIncome": {
             "type": "currency",
             "min": 0,
@@ -153,20 +77,12 @@
             "tooltip": "Additional monthly income from other sources",
             "audited": true
         },
-        "additionalIncomeConverted": {
-            "type": "currencyConverted",
-            "readOnly": true
-        },
         "monthlyObligations": {
             "type": "currency",
             "min": 0,
             "default": 0,
             "tooltip": "Total monthly loan obligations and expenses",
             "audited": true
-        },
-        "monthlyObligationsConverted": {
-            "type": "currencyConverted",
-            "readOnly": true
         },
         "bankAccountNumber": {
             "type": "varchar",
@@ -185,10 +101,6 @@
             "required": true,
             "tooltip": "Loan amount requested by applicant",
             "audited": true
-        },
-        "loanAmountRequestedConverted": {
-            "type": "currencyConverted",
-            "readOnly": true
         },
         "loanTenureRequested": {
             "type": "int",
@@ -218,7 +130,12 @@
         },
         "leadTemperature": {
             "type": "enum",
-            "options": ["", "Cold", "Warm", "Hot"],
+            "options": [
+                "",
+                "Cold",
+                "Warm",
+                "Hot"
+            ],
             "default": "Cold",
             "style": {
                 "Cold": "primary",
@@ -254,7 +171,13 @@
         },
         "eligibilityStatus": {
             "type": "enum",
-            "options": ["", "Pending", "Qualified", "Not Qualified", "Conditional"],
+            "options": [
+                "",
+                "Pending",
+                "Qualified",
+                "Not Qualified",
+                "Conditional"
+            ],
             "default": "Pending",
             "style": {
                 "Pending": "default",
@@ -270,10 +193,6 @@
             "min": 0,
             "readOnly": true,
             "tooltip": "Maximum eligible loan amount based on qualification"
-        },
-        "maxEligibleAmountConverted": {
-            "type": "currencyConverted",
-            "readOnly": true
         },
         "recommendedTenure": {
             "type": "int",
@@ -331,7 +250,13 @@
         },
         "kycStatus": {
             "type": "enum",
-            "options": ["", "Pending", "In Progress", "Completed", "Rejected"],
+            "options": [
+                "",
+                "Pending",
+                "In Progress",
+                "Completed",
+                "Rejected"
+            ],
             "default": "Pending",
             "style": {
                 "Pending": "default",
@@ -362,7 +287,13 @@
         },
         "fraudCheckStatus": {
             "type": "enum",
-            "options": ["", "Pending", "Clear", "Flagged", "Under Review"],
+            "options": [
+                "",
+                "Pending",
+                "Clear",
+                "Flagged",
+                "Under Review"
+            ],
             "default": "Pending",
             "style": {
                 "Pending": "default",
@@ -408,7 +339,13 @@
         },
         "creditBureauStatus": {
             "type": "enum",
-            "options": ["", "Not Requested", "Pending", "Retrieved", "Failed"],
+            "options": [
+                "",
+                "Not Requested",
+                "Pending",
+                "Retrieved",
+                "Failed"
+            ],
             "default": "Not Requested",
             "style": {
                 "Not Requested": "default",
@@ -424,161 +361,73 @@
             "default": false,
             "tooltip": "Is this a duplicate lead"
         },
-        "description": {
-            "type": "text",
-            "tooltip": "Additional notes and comments"
-        },
-        "convertedAt": {
-            "type": "datetime",
-            "readOnly": true,
-            "tooltip": "Date and time when lead was converted"
-        },
-        "createdAt": {
-            "type": "datetime",
-            "readOnly": true
-        },
-        "modifiedAt": {
-            "type": "datetime",
-            "readOnly": true
-        },
-        "createdBy": {
-            "type": "link",
-            "readOnly": true
-        },
-        "modifiedBy": {
-            "type": "link",
-            "readOnly": true
-        },
-        "assignedUser": {
-            "type": "link",
-            "required": true,
-            "tooltip": "Loan officer assigned to this lead"
-        },
-        "teams": {
-            "type": "linkMultiple"
-        },
-        "campaign": {
-            "type": "link"
-        },
         "duplicateOf": {
             "type": "link",
-            "entity": "FinancialLead",
+            "entity": "Lead",
             "tooltip": "Original lead if this is a duplicate"
         }
     },
     "links": {
-        "createdBy": {
-            "type": "belongsTo",
-            "entity": "User"
-        },
-        "modifiedBy": {
-            "type": "belongsTo",
-            "entity": "User"
-        },
-        "assignedUser": {
-            "type": "belongsTo",
-            "entity": "User"
-        },
-        "teams": {
-            "type": "hasMany",
-            "entity": "Team",
-            "relationName": "entityTeam"
-        },
-        "campaign": {
-            "type": "belongsTo",
-            "entity": "Campaign"
-        },
-        "meetings": {
-            "type": "hasMany",
-            "entity": "Meeting",
-            "foreign": "parent",
-            "audited": true
-        },
-        "calls": {
-            "type": "hasMany",
-            "entity": "Call",
-            "foreign": "parent",
-            "audited": true
-        },
-        "tasks": {
-            "type": "hasChildren",
-            "entity": "Task",
-            "foreign": "parent",
-            "audited": true
-        },
-        "emails": {
-            "type": "hasChildren",
-            "entity": "Email",
-            "foreign": "parent"
-        },
         "documents": {
             "type": "hasMany",
             "entity": "LeadDocument",
-            "foreign": "financialLead"
+            "foreign": "lead"
         },
         "coApplicants": {
             "type": "hasMany",
             "entity": "CoApplicant",
-            "foreign": "financialLead"
+            "foreign": "lead"
         },
         "guarantors": {
             "type": "hasMany",
             "entity": "Guarantor",
-            "foreign": "financialLead"
+            "foreign": "lead"
         },
         "creditReports": {
             "type": "hasMany",
             "entity": "CreditReport",
-            "foreign": "financialLead"
+            "foreign": "lead"
         },
         "qualificationChecks": {
             "type": "hasMany",
             "entity": "QualificationCheck",
-            "foreign": "financialLead"
+            "foreign": "lead"
         },
         "duplicateOf": {
             "type": "belongsTo",
-            "entity": "FinancialLead",
+            "entity": "Lead",
             "foreign": "duplicateLeads"
         },
         "duplicateLeads": {
             "type": "hasMany",
-            "entity": "FinancialLead",
+            "entity": "Lead",
             "foreign": "duplicateOf"
         }
     },
-    "collection": {
-        "orderBy": "createdAt",
-        "order": "desc",
-        "textFilterFields": ["name", "emailAddress", "phoneNumber", "nicNumber"]
-    },
     "indexes": {
-        "firstName": {
-            "columns": ["firstName", "deleted"]
-        },
-        "name": {
-            "columns": ["firstName", "lastName"]
-        },
-        "status": {
-            "columns": ["status", "deleted"]
-        },
         "nicNumber": {
-            "columns": ["nicNumber", "deleted"]
-        },
-        "createdAt": {
-            "columns": ["createdAt", "deleted"]
-        },
-        "assignedUser": {
-            "columns": ["assignedUserId", "deleted"]
+            "columns": [
+                "nicNumber",
+                "deleted"
+            ]
         },
         "eligibilityStatus": {
-            "columns": ["eligibilityStatus", "deleted"]
+            "columns": [
+                "eligibilityStatus",
+                "deleted"
+            ]
         },
         "leadChannel": {
-            "columns": ["leadChannel", "deleted"]
+            "columns": [
+                "leadChannel",
+                "deleted"
+            ]
         },
         "nextFollowUpDate": {
-            "columns": ["nextFollowUpDate", "deleted"]
+            "columns": [
+                "nextFollowUpDate",
+                "deleted"
+            ]
         }
     },
     "formula": {

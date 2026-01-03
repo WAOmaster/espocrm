@@ -1,0 +1,255 @@
+[
+    {
+        "label": "Overview",
+        "rows": [
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "status"
+                }
+            ],
+            [
+                {
+                    "name": "leadTemperature"
+                },
+                {
+                    "name": "leadScore"
+                }
+            ],
+            [
+                {
+                    "name": "emailAddress"
+                },
+                {
+                    "name": "phoneNumber"
+                }
+            ],
+            [
+                {
+                    "name": "assignedUser"
+                },
+                {
+                    "name": "createdAt"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Financial Information",
+        "rows": [
+            [
+                {
+                    "name": "employmentType"
+                },
+                {
+                    "name": "monthlyIncome"
+                }
+            ],
+            [
+                {
+                    "name": "additionalIncome"
+                },
+                {
+                    "name": "monthlyObligations"
+                }
+            ],
+            [
+                {
+                    "name": "foir"
+                },
+                {
+                    "name": "dti"
+                }
+            ],
+            [
+                {
+                    "name": "employerName"
+                },
+                {
+                    "name": "designation"
+                }
+            ],
+            [
+                {
+                    "name": "bankName"
+                },
+                {
+                    "name": "bankAccountNumber"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Loan Requirements",
+        "rows": [
+            [
+                {
+                    "name": "primaryProductInterest"
+                },
+                {
+                    "name": "loanAmountRequested"
+                }
+            ],
+            [
+                {
+                    "name": "loanTenureRequested"
+                },
+                {
+                    "name": "loanPurpose"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Qualification Status",
+        "rows": [
+            [
+                {
+                    "name": "eligibilityStatus"
+                },
+                {
+                    "name": "creditScore"
+                }
+            ],
+            [
+                {
+                    "name": "maxEligibleAmount"
+                },
+                {
+                    "name": "recommendedTenure"
+                }
+            ],
+            [
+                {
+                    "name": "creditBureauStatus"
+                },
+                {
+                    "name": "kycStatus"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Personal Details",
+        "rows": [
+            [
+                {
+                    "name": "dateOfBirth"
+                },
+                {
+                    "name": "gender"
+                }
+            ],
+            [
+                {
+                    "name": "maritalStatus"
+                },
+                {
+                    "name": "nicNumber"
+                }
+            ],
+            [
+                {
+                    "name": "passportNumber"
+                },
+                {
+                    "name": "address"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Compliance & Consent",
+        "rows": [
+            [
+                {
+                    "name": "dataConsentGiven"
+                },
+                {
+                    "name": "creditBureauConsentGiven"
+                }
+            ],
+            [
+                {
+                    "name": "marketingConsentGiven"
+                },
+                {
+                    "name": "fraudCheckStatus"
+                }
+            ],
+            [
+                {
+                    "name": "isDuplicate"
+                },
+                {
+                    "name": "duplicateOf"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Engagement",
+        "rows": [
+            [
+                {
+                    "name": "touchpointCount"
+                },
+                {
+                    "name": "responseRate"
+                }
+            ],
+            [
+                {
+                    "name": "lastContactDate"
+                },
+                {
+                    "name": "nextFollowUpDate"
+                }
+            ],
+            [
+                {
+                    "name": "daysInPipeline"
+                },
+                {
+                    "name": "documentChecklistComplete"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Channel Attribution",
+        "rows": [
+            [
+                {
+                    "name": "leadChannel"
+                },
+                {
+                    "name": "sourceDetail"
+                }
+            ],
+            [
+                {
+                    "name": "referredBy"
+                },
+                {
+                    "name": "fieldAgentCode"
+                }
+            ],
+            [
+                {
+                    "name": "utmSource"
+                },
+                {
+                    "name": "utmMedium"
+                }
+            ],
+            [
+                {
+                    "name": "utmCampaign"
+                }
+            ]
+        ]
+    }
+]

@@ -1,19 +1,4 @@
 {
-    "FinancialLead": {
-        "entity": true,
-        "layouts": true,
-        "tab": true,
-        "acl": true,
-        "aclPortal": false,
-        "customizable": true,
-        "importable": true,
-        "notifications": true,
-        "stream": true,
-        "hasPersonalData": true,
-        "object": true,
-        "statusField": "status",
-        "kanbanStatusIgnoreList": ["Converted", "Lost"]
-    },
     "CoApplicant": {
         "entity": true,
         "layouts": true,

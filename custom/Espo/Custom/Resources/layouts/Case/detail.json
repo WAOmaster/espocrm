@@ -1,0 +1,49 @@
+[
+    {
+        "label": "Overview",
+        "rows": [
+            [
+                {
+                    "name": "number"
+                },
+                {
+                    "name": "status"
+                }
+            ],
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "priority"
+                }
+            ],
+            [
+                {
+                    "name": "account"
+                },
+                {
+                    "name": "contact"
+                }
+            ],
+            [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "assignedUser"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Details",
+        "rows": [
+            [
+                {
+                    "name": "description"
+                }
+            ]
+        ]
+    }
+]

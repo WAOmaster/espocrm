@@ -1,0 +1,79 @@
+{
+    "fields": {
+        "nicNumber": {
+            "type": "varchar",
+            "maxLength": 20,
+            "isPersonalData": true,
+            "tooltip": "National Identity Card Number"
+        },
+        "dateOfBirth": {
+            "type": "date",
+            "isPersonalData": true
+        },
+        "gender": {
+            "type": "enum",
+            "options": [
+                "",
+                "Male",
+                "Female",
+                "Other"
+            ],
+            "isPersonalData": true
+        },
+        "kycStatus": {
+            "type": "enum",
+            "options": [
+                "",
+                "Pending",
+                "In Progress",
+                "Completed",
+                "Rejected"
+            ],
+            "default": "Pending",
+            "style": {
+                "Pending": "default",
+                "In Progress": "primary",
+                "Completed": "success",
+                "Rejected": "danger"
+            }
+        },
+        "employmentType": {
+            "type": "enum",
+            "options": [
+                "",
+                "Permanent",
+                "Contract",
+                "Self-Employed",
+                "Business Owner",
+                "Pensioner",
+                "Unemployed"
+            ]
+        },
+        "monthlyIncome": {
+            "type": "currency",
+            "min": 0,
+            "audited": true
+        },
+        "creditScore": {
+            "type": "int",
+            "min": 300,
+            "max": 900,
+            "readOnly": true
+        },
+        "riskProfile": {
+            "type": "enum",
+            "options": [
+                "",
+                "Low",
+                "Medium",
+                "High"
+            ],
+            "default": "Low",
+            "style": {
+                "Low": "success",
+                "Medium": "warning",
+                "High": "danger"
+            }
+        }
+    }
+}

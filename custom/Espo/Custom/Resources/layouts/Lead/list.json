@@ -1,0 +1,10 @@
+[
+    "name",
+    "status",
+    "leadScore",
+    "leadTemperature",
+    "monthlyIncome",
+    "loanAmountRequested",
+    "assignedUser",
+    "createdAt"
+]

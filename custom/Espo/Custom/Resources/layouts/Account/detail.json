@@ -1,0 +1,86 @@
+[
+    {
+        "label": "Overview",
+        "rows": [
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "website"
+                }
+            ],
+            [
+                {
+                    "name": "emailAddress"
+                },
+                {
+                    "name": "phoneNumber"
+                }
+            ],
+            [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "industry"
+                }
+            ],
+            [
+                {
+                    "name": "assignedUser"
+                },
+                {
+                    "name": "teams"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Financial Profile",
+        "rows": [
+            [
+                {
+                    "name": "nicNumber"
+                },
+                {
+                    "name": "dateOfBirth"
+                }
+            ],
+            [
+                {
+                    "name": "kycStatus"
+                },
+                {
+                    "name": "riskProfile"
+                }
+            ],
+            [
+                {
+                    "name": "employmentType"
+                },
+                {
+                    "name": "monthlyIncome"
+                }
+            ],
+            [
+                {
+                    "name": "creditScore"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Address",
+        "rows": [
+            [
+                {
+                    "name": "billingAddress"
+                },
+                {
+                    "name": "shippingAddress"
+                }
+            ]
+        ]
+    }
+]

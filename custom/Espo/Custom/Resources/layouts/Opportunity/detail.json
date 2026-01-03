@@ -1,0 +1,68 @@
+[
+    {
+        "label": "Overview",
+        "rows": [
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "account"
+                }
+            ],
+            [
+                {
+                    "name": "stage"
+                },
+                {
+                    "name": "probability"
+                }
+            ],
+            [
+                {
+                    "name": "amount"
+                },
+                {
+                    "name": "closeDate"
+                }
+            ],
+            [
+                {
+                    "name": "leadSource"
+                },
+                {
+                    "name": "campaign"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Loan Details",
+        "rows": [
+            [
+                {
+                    "name": "loanProduct"
+                },
+                {
+                    "name": "applicationStatus"
+                }
+            ],
+            [
+                {
+                    "name": "loanAmount"
+                },
+                {
+                    "name": "loanTenure"
+                }
+            ],
+            [
+                {
+                    "name": "interestRate"
+                },
+                {
+                    "name": "emi"
+                }
+            ]
+        ]
+    }
+]

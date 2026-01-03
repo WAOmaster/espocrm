@@ -1,0 +1,60 @@
+{
+    "fields": {
+        "loanProduct": {
+            "type": "link",
+            "entity": "LoanProduct",
+            "required": true
+        },
+        "loanAmount": {
+            "type": "currency",
+            "min": 0,
+            "required": true
+        },
+        "loanTenure": {
+            "type": "int",
+            "min": 1,
+            "required": true,
+            "tooltip": "Tenure in months"
+        },
+        "interestRate": {
+            "type": "float",
+            "min": 0,
+            "required": true,
+            "tooltip": "Interest rate %"
+        },
+        "emi": {
+            "type": "currency",
+            "min": 0,
+            "readOnly": true,
+            "tooltip": "Estimated Monthly Installment"
+        },
+        "applicationStatus": {
+            "type": "enum",
+            "options": [
+                "New",
+                "Credit Check",
+                "Verification",
+                "Underwriting",
+                "Approved",
+                "Rejected",
+                "Disbursed"
+            ],
+            "default": "New",
+            "style": {
+                "New": "default",
+                "Credit Check": "info",
+                "Verification": "primary",
+                "Underwriting": "warning",
+                "Approved": "success",
+                "Rejected": "danger",
+                "Disbursed": "success"
+            }
+        }
+    },
+    "links": {
+        "loanProduct": {
+            "type": "belongsTo",
+            "entity": "LoanProduct"
+        }
+    }
+}

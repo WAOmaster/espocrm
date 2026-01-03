@@ -1,0 +1,14 @@
+{
+    "fields": {
+        "type": {
+            "options": [
+                "Question",
+                "Incident",
+                "Problem",
+                "Document Verification",
+                "Field Investigation",
+                "Credit Review"
+            ]
+        }
+    }
+}
