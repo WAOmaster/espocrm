@@ -1,0 +1,12 @@
+{
+    "primaryProductInterest":  "Personal Loan",
+    "monthlyObligations":  30000,
+    "monthlyIncome":  100000,
+    "additionalIncome":  50000,
+    "leadChannel":  "Website",
+    "loanAmountRequested":  500000,
+    "name":  "Test Financial Lead",
+    "employmentType":  "Permanent",
+    "nicNumber":  "123456789V",
+    "status":  "New"
+}

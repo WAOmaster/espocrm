@@ -1,0 +1,42 @@
+[
+    {
+        "label": "Sales",
+        "icon": "fas fa-chart-line",
+        "menu": [
+            "Lead",
+            "Account",
+            "Contact",
+            "Opportunity"
+        ]
+    },
+    {
+        "label": "Financial Services",
+        "icon": "fas fa-university",
+        "menu": [
+            "LoanProduct",
+            "CoApplicant",
+            "Guarantor",
+            "LeadDocument",
+            "CreditReport",
+            "QualificationCheck"
+        ]
+    },
+    {
+        "label": "Support",
+        "icon": "fas fa-headset",
+        "menu": [
+            "Case",
+            "Task",
+            "Meeting",
+            "Call",
+            "Calendar"
+        ]
+    },
+    {
+        "label": "Documents",
+        "icon": "fas fa-folder",
+        "menu": [
+            "Document"
+        ]
+    }
+]
