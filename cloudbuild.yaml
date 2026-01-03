@@ -41,7 +41,7 @@ steps:
       - '--cpu'
       - '1'
       - '--timeout'
-      - '300'
+      - '600'
 
 # Use Cloud Logging only (fixes the service account error)
 options:
