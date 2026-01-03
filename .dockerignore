@@ -41,13 +41,13 @@ phpunit.xml
 data/*
 !data/.data
 
-# Custom (will be mounted or created at runtime)
-custom/Espo/Custom/*
-!custom/Espo/Custom/.htaccess
-!custom/Espo/Custom/Resources
+# Custom module uploads only - PHP code should be included
+# Do NOT exclude custom/Espo/Custom/* as it contains entity definitions
+# !custom/Espo/Custom/.htaccess
+# !custom/Espo/Custom/Resources
 
 # Uploads
-client/custom/*
+# client/custom/* - removed to include custom scripts
 
 # Cache
 .cache

@@ -3,6 +3,16 @@ set -e
 
 echo "Starting EspoCRM initialization..."
 
+# Database configuration from environment variables with defaults
+DB_HOST="${DATABASE_HOST:-34.22.223.99}"
+DB_PORT="${DATABASE_PORT:-3306}"
+DB_NAME="${DATABASE_NAME:-espocrm_fresh}"
+DB_USER="${DATABASE_USER:-root}"
+DB_PASSWORD="${DATABASE_PASSWORD:-EspoCRM2025}"
+SITE_URL="${SITE_URL:-https://espocrm-1050025521391.europe-west1.run.app}"
+
+echo "Database config: host=$DB_HOST, dbname=$DB_NAME, user=$DB_USER"
+
 # Create required directories if they don't exist
 mkdir -p /var/www/html/public
 mkdir -p /var/www/html/data
@@ -73,7 +83,7 @@ if [ ! -f "/var/www/html/data/config.php" ]; then
     echo "Config.php not found. Checking installation status..."
 
     # Check if database is already installed by looking for user table
-    DB_INSTALLED=$(mysql -h 34.22.223.99 -u root -pEspoCRM2025 espocrm_fresh -N -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='espocrm_fresh' AND table_name='user';" 2>/dev/null || echo "0")
+    DB_INSTALLED=$(mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASSWORD" "$DB_NAME" -N -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='$DB_NAME' AND table_name='user';" 2>/dev/null || echo "0")
 
     if [ "$DB_INSTALLED" = "1" ]; then
         echo "Database is already installed. Creating full config.php..."
@@ -81,17 +91,17 @@ if [ ! -f "/var/www/html/data/config.php" ]; then
 <?php
 return [
     'database' => [
-        'host' => '34.22.223.99',
-        'port' => '3306',
+        'host' => '$DB_HOST',
+        'port' => '$DB_PORT',
         'charset' => 'utf8mb4',
-        'dbname' => 'espocrm_fresh',
-        'user' => 'root',
-        'password' => 'EspoCRM2025',
+        'dbname' => '$DB_NAME',
+        'user' => '$DB_USER',
+        'password' => '$DB_PASSWORD',
         'driver' => 'pdo_mysql',
         'platform' => 'Mysql',
     ],
     'isInstalled' => true,
-    'siteUrl' => 'https://espocrm-1050025521391.europe-west1.run.app',
+    'siteUrl' => '$SITE_URL',
     'useCache' => true,
     'recordsPerPage' => 20,
     'recordsPerPageSmall' => 5,
@@ -145,12 +155,12 @@ EOF
 <?php
 return [
     'database' => [
-        'host' => '34.22.223.99',
-        'port' => '3306',
+        'host' => '$DB_HOST',
+        'port' => '$DB_PORT',
         'charset' => 'utf8mb4',
-        'dbname' => 'espocrm_fresh',
-        'user' => 'root',
-        'password' => 'EspoCRM2025',
+        'dbname' => '$DB_NAME',
+        'user' => '$DB_USER',
+        'password' => '$DB_PASSWORD',
         'driver' => 'pdo_mysql',
         'platform' => 'Mysql',
     ],
