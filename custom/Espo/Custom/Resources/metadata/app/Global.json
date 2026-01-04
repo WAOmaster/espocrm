@@ -1,0 +1,14 @@
+{
+    "tabList": [
+        "Account",
+        "Contact",
+        "Lead",
+        "Branch",
+        "LoanProduct"
+    ],
+    "quickCreateList": [
+        "Account",
+        "Contact",
+        "Lead"
+    ]
+}
