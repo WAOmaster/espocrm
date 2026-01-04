@@ -1,0 +1,18 @@
+{
+    "fields": {
+        "geminiApiKey": {
+            "type": "varchar",
+            "required": false,
+            "tooltip": "Enter your Google Gemini API Key here."
+        },
+        "geminiModel": {
+            "type": "varchar",
+            "default": "gemini-1.5-flash",
+            "options": [
+                "gemini-1.5-flash",
+                "gemini-1.5-pro",
+                "gemini-1.0-pro"
+            ]
+        }
+    }
+}

@@ -38,6 +38,24 @@ class Lead extends \Espo\Modules\Crm\Controllers\Lead
     }
 
     /**
+     * POST api/v1/Lead/action/qualifyWithAI
+     * 
+     * Qualify lead using Gemini AI
+     */
+    public function postActionQualifyWithAI(Request $request): string
+    {
+        $data = $request->getParsedBody();
+
+        if (empty($data->id)) {
+            throw new BadRequest("Lead ID is required.");
+        }
+
+        $service = $this->getLeadQualificationService();
+        
+        return $service->qualifyWithAI($data->id);
+    }
+
+    /**
      * GET api/v1/Lead/{id}/productRecommendations
      * 
      * Get product recommendations for a lead

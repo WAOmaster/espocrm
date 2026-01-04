@@ -10,6 +10,8 @@
 
 namespace Espo\Custom\Services;
 
+use Espo\Custom\Services\GeminiService;
+
 use Espo\ORM\EntityManager;
 use Espo\ORM\Entity;
 use Espo\Core\Exceptions\NotFound;
@@ -22,6 +24,7 @@ class LeadQualification
     private EntityManager $entityManager;
     private Acl $acl;
     private Log $log;
+    private GeminiService $geminiService;
 
     // FOIR/DTI thresholds for Sri Lankan microfinance context
     private const MAX_FOIR_THRESHOLD = 60.0;  // Maximum 60% FOIR
@@ -31,11 +34,13 @@ class LeadQualification
     public function __construct(
         EntityManager $entityManager,
         Acl $acl,
-        Log $log
+        Log $log,
+        GeminiService $geminiService
     ) {
         $this->entityManager = $entityManager;
         $this->acl = $acl;
         $this->log = $log;
+        $this->geminiService = $geminiService;
     }
 
     /**
@@ -256,5 +261,55 @@ class LeadQualification
 
         // Round to nearest 10,000 LKR
         return floor($loanAmount / 10000) * 10000;
+    }
+
+    /**
+     * Qualify lead using Gemini AI
+     */
+    public function qualifyWithAI(string $leadId): string
+    {
+        $lead = $this->entityManager->getEntityById('Lead', $leadId);
+
+        if (!$lead) {
+            throw new NotFound("Lead not found: {$leadId}");
+        }
+
+        $prompt = $this->buildQualificationPrompt($lead);
+        
+        try {
+            return $this->geminiService->generateContent($prompt);
+        } catch (\Exception $e) {
+            $this->log->error("AI Qualification failed: " . $e->getMessage());
+            return "AI Qualification unavailable at the moment.";
+        }
+    }
+
+    private function buildQualificationPrompt(Entity $lead): string
+    {
+        $data = [
+            'Monthly Income' => $lead->get('monthlyIncome'),
+            'Monthly Obligations' => $lead->get('monthlyObligations'),
+            'Loan Amount Requested' => $lead->get('loanAmountRequested'),
+            'Loan Tenure' => $lead->get('loanTenureRequested'),
+            'Credit Score' => $lead->get('creditScore'),
+            'Employment Type' => $lead->get('employmentType'),
+            'Employer' => $lead->get('employerName'),
+            'Purpose' => $lead->get('description'),
+        ];
+
+        $prompt = "Act as a credit risk analyst for a microfinance institution in Sri Lanka.\n";
+        $prompt .= "Analyze the following lead application data and provide a risk assessment and qualification recommendation.\n\n";
+        
+        foreach ($data as $key => $value) {
+            $prompt .= "{$key}: {$value}\n";
+        }
+
+        $prompt .= "\nPlease provide:\n";
+        $prompt .= "1. Risk Level (Low, Medium, High)\n";
+        $prompt .= "2. Key Risk Factors\n";
+        $prompt .= "3. Qualification Recommendation (Approve, Reject, Conditional)\n";
+        $prompt .= "4. Reasoning\n";
+
+        return $prompt;
     }
 }

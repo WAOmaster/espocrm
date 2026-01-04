@@ -1,0 +1,13 @@
+{
+    "menu": {
+        "detail": [
+            {
+                "label": "Qualify with AI",
+                "action": "qualifyWithAI",
+                "acl": "edit",
+                "style": "primary"
+            },
+            "__APPEND__"
+        ]
+    }
+}
