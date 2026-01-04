@@ -1,4 +1,7 @@
 {
+    "recordViews": {
+        "detail": "custom:views/lead/record/detail"
+    },
     "menu": {
         "detail": [
             {
