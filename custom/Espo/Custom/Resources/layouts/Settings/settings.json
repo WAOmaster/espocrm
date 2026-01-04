@@ -1,0 +1,16 @@
+[
+    {
+        "label": "Gemini AI",
+        "rows": [
+            [
+                {
+                    "name": "geminiApiKey"
+                },
+                {
+                    "name": "geminiModel"
+                }
+            ]
+        ]
+    },
+    "__APPEND__"
+]
