@@ -1,0 +1,49 @@
+[
+    {
+        "label": "Overview",
+        "rows": [
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "relationship"
+                }
+            ],
+            [
+                {
+                    "name": "lead"
+                },
+                {
+                    "name": "nicNumber"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Employment & Income",
+        "rows": [
+            [
+                {
+                    "name": "employmentType"
+                },
+                {
+                    "name": "monthlyIncome"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Contact",
+        "rows": [
+            [
+                {
+                    "name": "contactNumber"
+                },
+                {
+                    "name": "email"
+                }
+            ]
+        ]
+    }
+]

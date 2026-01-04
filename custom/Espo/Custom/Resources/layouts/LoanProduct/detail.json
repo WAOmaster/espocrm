@@ -1,0 +1,179 @@
+[
+    {
+        "label": "Overview",
+        "rows": [
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "productCode"
+                }
+            ],
+            [
+                {
+                    "name": "productType"
+                },
+                {
+                    "name": "status"
+                }
+            ],
+            [
+                {
+                    "name": "description",
+                    "span": 2
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Loan Parameters",
+        "rows": [
+            [
+                {
+                    "name": "minLoanAmount"
+                },
+                {
+                    "name": "maxLoanAmount"
+                }
+            ],
+            [
+                {
+                    "name": "minTenure"
+                },
+                {
+                    "name": "maxTenure"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Interest & Fees",
+        "rows": [
+            [
+                {
+                    "name": "interestRateMin"
+                },
+                {
+                    "name": "interestRateMax"
+                }
+            ],
+            [
+                {
+                    "name": "interestRateDefault"
+                },
+                {
+                    "name": "rateType"
+                }
+            ],
+            [
+                {
+                    "name": "processingFee"
+                },
+                {
+                    "name": "processingFeePercentage"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Eligibility Criteria",
+        "rows": [
+            [
+                {
+                    "name": "minIncome"
+                },
+                {
+                    "name": "minCreditScore"
+                }
+            ],
+            [
+                {
+                    "name": "maxFoir"
+                },
+                {
+                    "name": "maxDti"
+                }
+            ],
+            [
+                {
+                    "name": "eligibleEmploymentTypes",
+                    "span": 2
+                }
+            ],
+            [
+                {
+                    "name": "minAge"
+                },
+                {
+                    "name": "maxAge"
+                }
+            ],
+            [
+                {
+                    "name": "requiresGuarantor"
+                },
+                {
+                    "name": "requiresCollateral"
+                }
+            ],
+            [
+                {
+                    "name": "collateralType"
+                },
+                false
+            ]
+        ]
+    },
+    {
+        "label": "Additional Information",
+        "rows": [
+            [
+                {
+                    "name": "requiredDocuments",
+                    "span": 2
+                }
+            ],
+            [
+                {
+                    "name": "features",
+                    "span": 2
+                }
+            ],
+            [
+                {
+                    "name": "terms",
+                    "span": 2
+                }
+            ],
+            [
+                {
+                    "name": "targetMarket",
+                    "span": 2
+                }
+            ],
+            [
+                {
+                    "name": "specialOffers",
+                    "span": 2
+                }
+            ],
+            [
+                {
+                    "name": "displayOrder"
+                },
+                {
+                    "name": "isPromoted"
+                }
+            ],
+            [
+                {
+                    "name": "assignedUser"
+                },
+                {
+                    "name": "teams"
+                }
+            ]
+        ]
+    }
+]

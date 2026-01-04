@@ -1,0 +1,102 @@
+[
+    {
+        "label": "Overview",
+        "rows": [
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "branchCode"
+                }
+            ],
+            [
+                {
+                    "name": "region"
+                },
+                {
+                    "name": "status"
+                }
+            ],
+            [
+                {
+                    "name": "description",
+                    "span": 2
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Contact Information",
+        "rows": [
+            [
+                {
+                    "name": "address",
+                    "span": 2
+                }
+            ],
+            [
+                {
+                    "name": "phone"
+                },
+                {
+                    "name": "fax"
+                }
+            ],
+            [
+                {
+                    "name": "email"
+                },
+                {
+                    "name": "openingHours"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Services & Location",
+        "rows": [
+            [
+                {
+                    "name": "services",
+                    "span": 2
+                }
+            ],
+            [
+                {
+                    "name": "latitude"
+                },
+                {
+                    "name": "longitude"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Management",
+        "rows": [
+            [
+                {
+                    "name": "managerName"
+                },
+                {
+                    "name": "managerMobile"
+                }
+            ],
+            [
+                {
+                    "name": "managerEmail"
+                },
+                {
+                    "name": "assignedUser"
+                }
+            ],
+            [
+                {
+                    "name": "teams",
+                    "span": 2
+                }
+            ]
+        ]
+    }
+]

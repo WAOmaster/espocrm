@@ -1,0 +1,166 @@
+{
+    "fields": {
+        "dateOfBirth": "Date of Birth",
+        "gender": "Gender",
+        "maritalStatus": "Marital Status",
+        "nicNumber": "NIC Number",
+        "passportNumber": "Passport Number",
+        "employmentType": "Employment Type",
+        "employerName": "Employer Name",
+        "designation": "Designation",
+        "monthlyIncome": "Monthly Income",
+        "additionalIncome": "Additional Income",
+        "monthlyObligations": "Monthly Obligations",
+        "bankAccountNumber": "Bank Account Number",
+        "bankName": "Bank Name",
+        "loanAmountRequested": "Loan Amount Requested",
+        "loanTenureRequested": "Loan Tenure (Months)",
+        "primaryProductInterest": "Primary Product Interest",
+        "loanPurpose": "Loan Purpose",
+        "leadTemperature": "Lead Temperature",
+        "leadScore": "Lead Score",
+        "creditScore": "Credit Score",
+        "foir": "FOIR (%)",
+        "dti": "DTI (%)",
+        "eligibilityStatus": "Eligibility Status",
+        "maxEligibleAmount": "Max Eligible Amount",
+        "recommendedTenure": "Recommended Tenure",
+        "leadChannel": "Lead Channel",
+        "sourceDetail": "Source Detail",
+        "referredBy": "Referred By",
+        "fieldAgentCode": "Field Agent Code",
+        "utmSource": "UTM Source",
+        "utmMedium": "UTM Medium",
+        "utmCampaign": "UTM Campaign",
+        "kycStatus": "KYC Status",
+        "dataConsentGiven": "Data Consent Given",
+        "creditBureauConsentGiven": "Credit Bureau Consent Given",
+        "marketingConsentGiven": "Marketing Consent Given",
+        "fraudCheckStatus": "Fraud Check Status",
+        "lastContactDate": "Last Contact Date",
+        "nextFollowUpDate": "Next Follow-up Date",
+        "touchpointCount": "Touchpoint Count",
+        "responseRate": "Response Rate (%)",
+        "daysInPipeline": "Days in Pipeline",
+        "documentChecklistComplete": "Document Checklist Complete",
+        "creditBureauStatus": "Credit Bureau Status",
+        "isDuplicate": "Is Duplicate",
+        "duplicateOf": "Duplicate Of"
+    },
+    "links": {
+        "documents": "Documents",
+        "coApplicants": "Co-Applicants",
+        "guarantors": "Guarantors",
+        "creditReports": "Credit Reports",
+        "qualificationChecks": "Qualification Checks",
+        "duplicateOf": "Duplicate Of",
+        "duplicateLeads": "Duplicate Leads"
+    },
+    "labels": {
+        "Overview": "Overview",
+        "Financial Information": "Financial Information",
+        "Loan Requirements": "Loan Requirements",
+        "Qualification Status": "Qualification Status",
+        "Personal Details": "Personal Details",
+        "Compliance & Consent": "Compliance & Consent",
+        "Engagement": "Engagement",
+        "Channel Attribution": "Channel Attribution",
+        "Qualify with AI": "Qualify with AI"
+    },
+    "options": {
+        "gender": {
+            "": "",
+            "Male": "Male",
+            "Female": "Female",
+            "Other": "Other"
+        },
+        "maritalStatus": {
+            "": "",
+            "Single": "Single",
+            "Married": "Married",
+            "Divorced": "Divorced",
+            "Widowed": "Widowed"
+        },
+        "employmentType": {
+            "": "",
+            "Permanent": "Permanent",
+            "Contract": "Contract",
+            "Self-Employed": "Self-Employed",
+            "Business Owner": "Business Owner",
+            "Pensioner": "Pensioner",
+            "Unemployed": "Unemployed"
+        },
+        "primaryProductInterest": {
+            "": "",
+            "Personal Loan": "Personal Loan",
+            "Home Loan": "Home Loan",
+            "Vehicle Loan": "Vehicle Loan",
+            "Business Loan": "Business Loan",
+            "Microfinance": "Microfinance",
+            "Leasing": "Leasing",
+            "Pawning": "Pawning",
+            "Other": "Other"
+        },
+        "leadTemperature": {
+            "": "",
+            "Cold": "Cold",
+            "Warm": "Warm",
+            "Hot": "Hot"
+        },
+        "eligibilityStatus": {
+            "": "",
+            "Pending": "Pending",
+            "Qualified": "Qualified",
+            "Not Qualified": "Not Qualified",
+            "Conditional": "Conditional"
+        },
+        "leadChannel": {
+            "": "",
+            "Website": "Website",
+            "Facebook": "Facebook",
+            "Google Ads": "Google Ads",
+            "Referral": "Referral",
+            "Walk-In": "Walk-In",
+            "Phone Call": "Phone Call",
+            "SMS Campaign": "SMS Campaign",
+            "Email Campaign": "Email Campaign",
+            "Field Agent": "Field Agent",
+            "Partner": "Partner",
+            "Other": "Other"
+        },
+        "kycStatus": {
+            "": "",
+            "Pending": "Pending",
+            "In Progress": "In Progress",
+            "Completed": "Completed",
+            "Rejected": "Rejected"
+        },
+        "fraudCheckStatus": {
+            "": "",
+            "Pending": "Pending",
+            "Clear": "Clear",
+            "Flagged": "Flagged",
+            "Under Review": "Under Review"
+        },
+        "creditBureauStatus": {
+            "": "",
+            "Not Requested": "Not Requested",
+            "Pending": "Pending",
+            "Retrieved": "Retrieved",
+            "Failed": "Failed"
+        }
+    },
+    "tooltips": {
+        "nicNumber": "National Identity Card Number (Old: 9 digits + V/X, New: 12 digits)",
+        "foir": "Fixed Obligation to Income Ratio - percentage of income used for fixed obligations",
+        "dti": "Debt to Income Ratio - percentage of income used for debt repayment",
+        "leadScore": "Auto-calculated score (0-100) based on income, employment, credit score, and engagement",
+        "monthlyObligations": "Total existing loan EMIs, rent, and other fixed monthly obligations"
+    },
+    "presetFilters": {
+        "myLeads": "My Leads",
+        "qualified": "Qualified",
+        "hot": "Hot Leads",
+        "followUpToday": "Follow-up Today"
+    }
+}

@@ -1,23 +1,19 @@
 {
-    "controller": "controllers/record",
-    "views": {
-        "list": "views/list",
-        "detail": "views/detail",
-        "edit": "views/edit"
-    },
-    "recordViews": {
-        "list": "views/record/list",
-        "detail": "views/record/detail",
-        "edit": "views/record/edit"
-    },
-    "massActionList": [
-        "remove",
-        "merge",
-        "update"
+    "iconClass": "fas fa-building",
+    "color": "#27ae60",
+    "kanbanViewMode": false,
+    "filterList": [
+        {
+            "name": "active",
+            "label": "Active Branches",
+            "style": "success"
+        },
+        {
+            "name": "western",
+            "label": "Western Province"
+        }
     ],
-    "checkAllResultMassActionList": [
-        "remove",
-        "update"
-    ],
-    "iconClass": "fas fa-building"
+    "boolFilterList": [
+        "onlyMy"
+    ]
 }

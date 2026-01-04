@@ -1,0 +1,28 @@
+{
+    "fields": {
+        "name": "Name",
+        "relationship": "Relationship",
+        "nicNumber": "NIC Number",
+        "employmentType": "Employment Type",
+        "monthlyIncome": "Monthly Income",
+        "contactNumber": "Contact Number",
+        "email": "Email",
+        "lead": "Lead"
+    },
+    "labels": {
+        "Overview": "Overview",
+        "Employment & Income": "Employment & Income",
+        "Contact": "Contact"
+    },
+    "options": {
+        "relationship": {
+            "": "",
+            "Spouse": "Spouse",
+            "Parent": "Parent",
+            "Child": "Child",
+            "Sibling": "Sibling",
+            "Business Partner": "Business Partner",
+            "Other": "Other"
+        }
+    }
+}

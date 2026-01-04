@@ -1,0 +1,10 @@
+[
+    "name",
+    "productCode",
+    "productType",
+    "status",
+    "interestRateMin",
+    "interestRateMax",
+    "minLoanAmount",
+    "maxLoanAmount"
+]

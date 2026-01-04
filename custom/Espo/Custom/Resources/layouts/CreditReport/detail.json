@@ -1,0 +1,61 @@
+[
+    {
+        "label": "Overview",
+        "rows": [
+            [
+                {
+                    "name": "lead"
+                },
+                {
+                    "name": "bureauName"
+                }
+            ],
+            [
+                {
+                    "name": "reportDate"
+                },
+                {
+                    "name": "reportReference"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Credit Summary",
+        "rows": [
+            [
+                {
+                    "name": "creditScore"
+                },
+                {
+                    "name": "defaultHistory"
+                }
+            ],
+            [
+                {
+                    "name": "numberOfActiveLoans"
+                },
+                {
+                    "name": "totalOutstandingAmount"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Report Details",
+        "rows": [
+            [
+                {
+                    "name": "reportSummary",
+                    "span": 2
+                }
+            ],
+            [
+                {
+                    "name": "reportFile",
+                    "span": 2
+                }
+            ]
+        ]
+    }
+]

@@ -1,0 +1,58 @@
+{
+    "fields": {
+        "name": "Branch Name",
+        "branchCode": "Branch Code",
+        "region": "Region",
+        "status": "Status",
+        "address": "Address",
+        "phone": "Phone",
+        "fax": "Fax",
+        "email": "Email",
+        "managerName": "Manager Name",
+        "managerMobile": "Manager Mobile",
+        "managerEmail": "Manager Email",
+        "openingHours": "Opening Hours",
+        "services": "Services",
+        "latitude": "Latitude",
+        "longitude": "Longitude",
+        "description": "Description"
+    },
+    "labels": {
+        "Overview": "Overview",
+        "Contact Information": "Contact Information",
+        "Services & Location": "Services & Location",
+        "Management": "Management"
+    },
+    "options": {
+        "region": {
+            "": "",
+            "Western": "Western",
+            "Central": "Central",
+            "Southern": "Southern",
+            "Northern": "Northern",
+            "Eastern": "Eastern",
+            "North Western": "North Western",
+            "North Central": "North Central",
+            "Uva": "Uva",
+            "Sabaragamuwa": "Sabaragamuwa"
+        },
+        "status": {
+            "Active": "Active",
+            "Inactive": "Inactive",
+            "Temporarily Closed": "Temporarily Closed"
+        },
+        "services": {
+            "Leasing": "Leasing",
+            "Gold Financing": "Gold Financing",
+            "Personal Loans": "Personal Loans",
+            "Business Loans": "Business Loans",
+            "Factoring": "Factoring",
+            "Savings": "Savings",
+            "Fixed Deposits": "Fixed Deposits"
+        }
+    },
+    "presetFilters": {
+        "active": "Active Branches",
+        "western": "Western Province"
+    }
+}

@@ -1,0 +1,63 @@
+[
+    {
+        "label": "Overview",
+        "rows": [
+            [
+                {
+                    "name": "lead"
+                },
+                {
+                    "name": "checkDate"
+                }
+            ],
+            [
+                {
+                    "name": "checkType"
+                },
+                {
+                    "name": "performedBy"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Eligibility Result",
+        "rows": [
+            [
+                {
+                    "name": "eligibilityResult"
+                },
+                {
+                    "name": "maxLoanAmount"
+                }
+            ],
+            [
+                {
+                    "name": "recommendedTenure"
+                },
+                {
+                    "name": "interestRateOffered"
+                }
+            ],
+            [
+                {
+                    "name": "qualificationRemarks",
+                    "span": 2
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Financial Ratios",
+        "rows": [
+            [
+                {
+                    "name": "foirCalculated"
+                },
+                {
+                    "name": "dtiCalculated"
+                }
+            ]
+        ]
+    }
+]

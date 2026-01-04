@@ -1,0 +1,78 @@
+[
+    {
+        "label": "Overview",
+        "rows": [
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "relationshipToApplicant"
+                }
+            ],
+            [
+                {
+                    "name": "lead"
+                },
+                {
+                    "name": "nicNumber"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Employment & Income",
+        "rows": [
+            [
+                {
+                    "name": "employmentType"
+                },
+                {
+                    "name": "monthlyIncome"
+                }
+            ],
+            [
+                {
+                    "name": "employmentDetails",
+                    "span": 2
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Contact",
+        "rows": [
+            [
+                {
+                    "name": "address",
+                    "span": 2
+                }
+            ],
+            [
+                {
+                    "name": "contactNumber"
+                },
+                {
+                    "name": "email"
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Property & Consent",
+        "rows": [
+            [
+                {
+                    "name": "propertyDetails",
+                    "span": 2
+                }
+            ],
+            [
+                {
+                    "name": "consentGiven"
+                },
+                false
+            ]
+        ]
+    }
+]

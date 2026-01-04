@@ -1,23 +1,20 @@
 {
-    "controller": "controllers/record",
-    "views": {
-        "list": "views/list",
-        "detail": "views/detail",
-        "edit": "views/edit"
-    },
-    "recordViews": {
-        "list": "views/record/list",
-        "detail": "views/record/detail",
-        "edit": "views/record/edit"
-    },
-    "massActionList": [
-        "remove",
-        "merge",
-        "update"
+    "iconClass": "fas fa-file-invoice-dollar",
+    "color": "#9b59b6",
+    "kanbanViewMode": false,
+    "filterList": [
+        {
+            "name": "active",
+            "label": "Active Products",
+            "style": "success"
+        },
+        {
+            "name": "promoted",
+            "label": "Promoted Products",
+            "style": "warning"
+        }
     ],
-    "checkAllResultMassActionList": [
-        "remove",
-        "update"
-    ],
-    "iconClass": "fas fa-credit-card"
+    "boolFilterList": [
+        "onlyMy"
+    ]
 }

@@ -1,0 +1,83 @@
+{
+    "fields": {
+        "name": "Product Name",
+        "productCode": "Product Code",
+        "productType": "Product Type",
+        "status": "Status",
+        "description": "Description",
+        "minLoanAmount": "Minimum Loan Amount",
+        "maxLoanAmount": "Maximum Loan Amount",
+        "minTenure": "Minimum Tenure (Months)",
+        "maxTenure": "Maximum Tenure (Months)",
+        "interestRateMin": "Minimum Interest Rate (%)",
+        "interestRateMax": "Maximum Interest Rate (%)",
+        "interestRateDefault": "Default Interest Rate (%)",
+        "rateType": "Rate Type",
+        "processingFee": "Processing Fee",
+        "processingFeePercentage": "Processing Fee (%)",
+        "minIncome": "Minimum Income Required",
+        "minCreditScore": "Minimum Credit Score",
+        "maxFoir": "Maximum FOIR (%)",
+        "maxDti": "Maximum DTI (%)",
+        "eligibleEmploymentTypes": "Eligible Employment Types",
+        "minAge": "Minimum Age",
+        "maxAge": "Maximum Age",
+        "requiresGuarantor": "Requires Guarantor",
+        "requiresCollateral": "Requires Collateral",
+        "collateralType": "Collateral Type",
+        "requiredDocuments": "Required Documents",
+        "features": "Features",
+        "terms": "Terms & Conditions",
+        "targetMarket": "Target Market",
+        "specialOffers": "Special Offers",
+        "displayOrder": "Display Order",
+        "isPromoted": "Is Promoted"
+    },
+    "labels": {
+        "Overview": "Overview",
+        "Loan Parameters": "Loan Parameters",
+        "Interest & Fees": "Interest & Fees",
+        "Eligibility Criteria": "Eligibility Criteria",
+        "Additional Information": "Additional Information"
+    },
+    "options": {
+        "productType": {
+            "": "",
+            "Personal Loan": "Personal Loan",
+            "Home Loan": "Home Loan",
+            "Vehicle Loan": "Vehicle Loan",
+            "Business Loan": "Business Loan",
+            "Microfinance": "Microfinance",
+            "Leasing": "Leasing",
+            "Pawning": "Pawning",
+            "Education Loan": "Education Loan",
+            "Agriculture Loan": "Agriculture Loan",
+            "Other": "Other"
+        },
+        "status": {
+            "Active": "Active",
+            "Inactive": "Inactive",
+            "Discontinued": "Discontinued"
+        },
+        "rateType": {
+            "": "",
+            "Fixed": "Fixed",
+            "Variable": "Variable",
+            "Reducing Balance": "Reducing Balance",
+            "Flat Rate": "Flat Rate"
+        },
+        "collateralType": {
+            "": "",
+            "Property": "Property",
+            "Vehicle": "Vehicle",
+            "Fixed Deposit": "Fixed Deposit",
+            "Gold/Jewelry": "Gold/Jewelry",
+            "Business Assets": "Business Assets",
+            "Other": "Other"
+        }
+    },
+    "presetFilters": {
+        "active": "Active Products",
+        "promoted": "Promoted Products"
+    }
+}

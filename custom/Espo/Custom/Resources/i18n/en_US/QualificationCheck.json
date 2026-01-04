@@ -1,0 +1,34 @@
+{
+    "fields": {
+        "checkDate": "Check Date",
+        "checkType": "Check Type",
+        "eligibilityResult": "Eligibility Result",
+        "maxLoanAmount": "Max Loan Amount",
+        "recommendedTenure": "Recommended Tenure",
+        "interestRateOffered": "Interest Rate Offered",
+        "foirCalculated": "FOIR Calculated",
+        "dtiCalculated": "DTI Calculated",
+        "qualificationRemarks": "Qualification Remarks",
+        "performedBy": "Performed By",
+        "lead": "Lead"
+    },
+    "labels": {
+        "Overview": "Overview",
+        "Eligibility Result": "Eligibility Result",
+        "Financial Ratios": "Financial Ratios"
+    },
+    "options": {
+        "checkType": {
+            "": "",
+            "Pre-Qualification": "Pre-Qualification",
+            "Full Qualification": "Full Qualification",
+            "Re-Qualification": "Re-Qualification"
+        },
+        "eligibilityResult": {
+            "": "",
+            "Qualified": "Qualified",
+            "Not Qualified": "Not Qualified",
+            "Conditional": "Conditional"
+        }
+    }
+}

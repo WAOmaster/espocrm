@@ -10,6 +10,13 @@
         ]
     },
     {
+        "label": "Organization",
+        "icon": "fas fa-building",
+        "menu": [
+            "Branch"
+        ]
+    },
+    {
         "label": "Financial Services",
         "icon": "fas fa-university",
         "menu": [

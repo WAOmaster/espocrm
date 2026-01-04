@@ -1,0 +1,26 @@
+{
+    "fields": {
+        "bureauName": "Bureau Name",
+        "reportDate": "Report Date",
+        "creditScore": "Credit Score",
+        "reportReference": "Report Reference",
+        "reportSummary": "Report Summary",
+        "numberOfActiveLoans": "Number of Active Loans",
+        "totalOutstandingAmount": "Total Outstanding Amount",
+        "defaultHistory": "Default History",
+        "reportFile": "Report File",
+        "lead": "Lead"
+    },
+    "labels": {
+        "Overview": "Overview",
+        "Credit Summary": "Credit Summary",
+        "Report Details": "Report Details"
+    },
+    "options": {
+        "bureauName": {
+            "": "",
+            "CRIB": "CRIB",
+            "Other": "Other"
+        }
+    }
+}

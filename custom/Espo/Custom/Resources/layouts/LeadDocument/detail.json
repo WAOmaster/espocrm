@@ -1,0 +1,59 @@
+[
+    {
+        "label": "Overview",
+        "rows": [
+            [
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "documentType"
+                }
+            ],
+            [
+                {
+                    "name": "lead"
+                },
+                {
+                    "name": "documentStatus"
+                }
+            ],
+            [
+                {
+                    "name": "isMandatory"
+                },
+                false
+            ]
+        ]
+    },
+    {
+        "label": "Verification",
+        "rows": [
+            [
+                {
+                    "name": "verifiedBy"
+                },
+                {
+                    "name": "verifiedDate"
+                }
+            ],
+            [
+                {
+                    "name": "rejectionReason",
+                    "span": 2
+                }
+            ]
+        ]
+    },
+    {
+        "label": "Attachment",
+        "rows": [
+            [
+                {
+                    "name": "attachment",
+                    "span": 2
+                }
+            ]
+        ]
+    }
+]

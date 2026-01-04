@@ -1,0 +1,42 @@
+{
+    "fields": {
+        "name": "Document Name",
+        "documentType": "Document Type",
+        "documentStatus": "Document Status",
+        "isMandatory": "Is Mandatory",
+        "attachment": "Attachment",
+        "verifiedBy": "Verified By",
+        "verifiedDate": "Verified Date",
+        "rejectionReason": "Rejection Reason",
+        "lead": "Lead"
+    },
+    "labels": {
+        "Overview": "Overview",
+        "Verification": "Verification",
+        "Attachment": "Attachment"
+    },
+    "options": {
+        "documentType": {
+            "": "",
+            "NIC Front": "NIC Front",
+            "NIC Back": "NIC Back",
+            "Passport": "Passport",
+            "Driving License": "Driving License",
+            "Salary Slip": "Salary Slip",
+            "Bank Statement": "Bank Statement",
+            "Income Tax Return": "Income Tax Return",
+            "Business Registration": "Business Registration",
+            "Utility Bill": "Utility Bill",
+            "Employment Letter": "Employment Letter",
+            "Property Documents": "Property Documents",
+            "Vehicle Registration": "Vehicle Registration",
+            "Other": "Other"
+        },
+        "documentStatus": {
+            "Pending": "Pending",
+            "Submitted": "Submitted",
+            "Verified": "Verified",
+            "Rejected": "Rejected"
+        }
+    }
+}

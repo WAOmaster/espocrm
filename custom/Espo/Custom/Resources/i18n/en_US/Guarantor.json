@@ -1,0 +1,22 @@
+{
+    "fields": {
+        "name": "Name",
+        "relationshipToApplicant": "Relationship to Applicant",
+        "nicNumber": "NIC Number",
+        "address": "Address",
+        "employmentType": "Employment Type",
+        "monthlyIncome": "Monthly Income",
+        "employmentDetails": "Employment Details",
+        "contactNumber": "Contact Number",
+        "email": "Email",
+        "propertyDetails": "Property Details",
+        "consentGiven": "Consent Given",
+        "lead": "Lead"
+    },
+    "labels": {
+        "Overview": "Overview",
+        "Employment & Income": "Employment & Income",
+        "Contact": "Contact",
+        "Property & Consent": "Property & Consent"
+    }
+}
