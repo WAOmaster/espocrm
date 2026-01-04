@@ -1,0 +1,16 @@
+{
+    "actions": {
+        "create": {
+            "acl": "create"
+        },
+        "read": {
+            "acl": "read"
+        },
+        "update": {
+            "acl": "edit"
+        },
+        "delete": {
+            "acl": "delete"
+        }
+    }
+}
