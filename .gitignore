@@ -23,6 +23,8 @@
 /vendor/
 /custom/Espo/Custom/*
 !/custom/Espo/Custom/Resources
+!/custom/Espo/Custom/Services
+!/custom/Espo/Custom/Controllers
 /custom/Espo/Modules/*
 !/custom/Espo/Custom/.htaccess
 !/custom/Espo/Modules/.htaccess
