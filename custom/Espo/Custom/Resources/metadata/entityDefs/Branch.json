@@ -1,0 +1,175 @@
+{
+    "fields": {
+        "name": {
+            "type": "varchar",
+            "required": true,
+            "maxLength": 150,
+            "tooltip": "Branch name"
+        },
+        "branchCode": {
+            "type": "varchar",
+            "required": true,
+            "maxLength": 20,
+            "tooltip": "Unique branch code"
+        },
+        "region": {
+            "type": "enum",
+            "options": [
+                "",
+                "Western",
+                "Central",
+                "Southern",
+                "Northern",
+                "Eastern",
+                "North Western",
+                "North Central",
+                "Uva",
+                "Sabaragamuwa"
+            ],
+            "required": true,
+            "tooltip": "Province/Region"
+        },
+        "status": {
+            "type": "enum",
+            "options": [
+                "Active",
+                "Inactive",
+                "Temporarily Closed"
+            ],
+            "default": "Active",
+            "style": {
+                "Active": "success",
+                "Inactive": "danger",
+                "Temporarily Closed": "warning"
+            },
+            "displayAsLabel": true,
+            "required": true
+        },
+        "address": {
+            "type": "address"
+        },
+        "phone": {
+            "type": "phone"
+        },
+        "fax": {
+            "type": "varchar",
+            "maxLength": 20
+        },
+        "email": {
+            "type": "email"
+        },
+        "managerName": {
+            "type": "varchar",
+            "maxLength": 150,
+            "tooltip": "Branch Manager name"
+        },
+        "managerMobile": {
+            "type": "phone"
+        },
+        "managerEmail": {
+            "type": "email"
+        },
+        "openingHours": {
+            "type": "varchar",
+            "maxLength": 100,
+            "default": "Monday to Friday 8.30 a.m to 4.30 p.m"
+        },
+        "services": {
+            "type": "multiEnum",
+            "options": [
+                "Leasing",
+                "Gold Financing",
+                "Personal Loans",
+                "Business Loans",
+                "Factoring",
+                "Savings",
+                "Fixed Deposits"
+            ],
+            "tooltip": "Services offered at this branch"
+        },
+        "latitude": {
+            "type": "float",
+            "tooltip": "GPS Latitude"
+        },
+        "longitude": {
+            "type": "float",
+            "tooltip": "GPS Longitude"
+        },
+        "description": {
+            "type": "text"
+        },
+        "createdAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "modifiedAt": {
+            "type": "datetime",
+            "readOnly": true
+        },
+        "createdBy": {
+            "type": "link",
+            "readOnly": true
+        },
+        "modifiedBy": {
+            "type": "link",
+            "readOnly": true
+        },
+        "assignedUser": {
+            "type": "link",
+            "tooltip": "Regional Manager"
+        },
+        "teams": {
+            "type": "linkMultiple"
+        }
+    },
+    "links": {
+        "createdBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "modifiedBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "assignedUser": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "teams": {
+            "type": "hasMany",
+            "entity": "Team",
+            "relationName": "entityTeam"
+        }
+    },
+    "collection": {
+        "orderBy": "name",
+        "order": "asc",
+        "textFilterFields": [
+            "name",
+            "branchCode",
+            "region",
+            "managerName"
+        ]
+    },
+    "indexes": {
+        "branchCode": {
+            "unique": true,
+            "columns": [
+                "branchCode",
+                "deleted"
+            ]
+        },
+        "region": {
+            "columns": [
+                "region",
+                "deleted"
+            ]
+        },
+        "status": {
+            "columns": [
+                "status",
+                "deleted"
+            ]
+        }
+    }
+}

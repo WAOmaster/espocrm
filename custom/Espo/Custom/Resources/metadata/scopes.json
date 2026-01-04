@@ -62,5 +62,16 @@
         "stream": false,
         "object": true,
         "statusField": "status"
+    },
+    "Branch": {
+        "entity": true,
+        "layouts": true,
+        "tab": true,
+        "acl": true,
+        "customizable": true,
+        "importable": true,
+        "stream": false,
+        "object": true,
+        "statusField": "status"
     }
 }
