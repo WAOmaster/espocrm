@@ -139,6 +139,21 @@
             "type": "hasMany",
             "entity": "Team",
             "relationName": "entityTeam"
+        },
+        "leads": {
+            "type": "hasMany",
+            "entity": "Lead",
+            "foreign": "assignedBranch"
+        },
+        "opportunities": {
+            "type": "hasMany",
+            "entity": "Opportunity",
+            "foreign": "assignedBranch"
+        },
+        "cases": {
+            "type": "hasMany",
+            "entity": "Case",
+            "foreign": "assignedBranch"
         }
     },
     "collection": {

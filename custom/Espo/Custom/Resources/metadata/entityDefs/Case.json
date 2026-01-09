@@ -2,13 +2,220 @@
     "fields": {
         "type": {
             "options": [
-                "Question",
-                "Incident",
-                "Problem",
+                "Service",
+                "Complaint",
+                "Inquiry",
                 "Document Verification",
                 "Field Investigation",
                 "Credit Review"
-            ]
+            ],
+            "required": true,
+            "audited": true,
+            "style": {
+                "Service": "primary",
+                "Complaint": "danger",
+                "Inquiry": "default",
+                "Document Verification": "warning",
+                "Field Investigation": "info",
+                "Credit Review": "warning"
+            },
+            "displayAsLabel": true,
+            "tooltip": "Category of the case"
+        },
+        "status": {
+            "options": [
+                "Open",
+                "In Progress",
+                "Pending Customer",
+                "Escalated",
+                "Resolved",
+                "Closed"
+            ],
+            "default": "Open",
+            "required": true,
+            "audited": true,
+            "style": {
+                "Open": "primary",
+                "In Progress": "warning",
+                "Pending Customer": "default",
+                "Escalated": "danger",
+                "Resolved": "success",
+                "Closed": "default"
+            },
+            "displayAsLabel": true,
+            "tooltip": "Current case status"
+        },
+        "priority": {
+            "options": [
+                "Low",
+                "Normal",
+                "High",
+                "Urgent"
+            ],
+            "default": "Normal",
+            "required": true,
+            "audited": true,
+            "style": {
+                "Low": "default",
+                "Normal": "primary",
+                "High": "warning",
+                "Urgent": "danger"
+            },
+            "displayAsLabel": true,
+            "tooltip": "Case priority level"
+        },
+        "customerType": {
+            "type": "enum",
+            "options": [
+                "",
+                "Individual",
+                "Corporate",
+                "SME",
+                "Micro Finance"
+            ],
+            "default": "Individual",
+            "audited": true,
+            "tooltip": "Type of customer submitting the case"
+        },
+        "productType": {
+            "type": "enum",
+            "options": [
+                "",
+                "Personal Loan",
+                "Vehicle Loan",
+                "Gold Loan",
+                "Home Loan",
+                "Business Loan",
+                "Leasing",
+                "Pawning",
+                "Savings Account",
+                "Fixed Deposit",
+                "Other"
+            ],
+            "audited": true,
+            "tooltip": "Product related to this case"
+        },
+        "assignedBranch": {
+            "type": "link",
+            "entity": "Branch",
+            "tooltip": "Branch handling this case"
+        },
+        "slaDeadline": {
+            "type": "datetime",
+            "tooltip": "SLA deadline based on priority"
+        },
+        "slaStatus": {
+            "type": "enum",
+            "options": [
+                "",
+                "On Track",
+                "Warning",
+                "Breached"
+            ],
+            "default": "On Track",
+            "style": {
+                "On Track": "success",
+                "Warning": "warning",
+                "Breached": "danger"
+            },
+            "displayAsLabel": true,
+            "tooltip": "SLA status based on deadline"
+        },
+        "timeToResolve": {
+            "type": "int",
+            "readOnly": true,
+            "tooltip": "Hours allocated for resolution based on priority"
+        },
+        "resolvedAt": {
+            "type": "datetime",
+            "audited": true,
+            "tooltip": "When case was resolved"
+        },
+        "closedAt": {
+            "type": "datetime",
+            "audited": true,
+            "tooltip": "When case was closed"
+        },
+        "escalatedTo": {
+            "type": "link",
+            "entity": "User",
+            "tooltip": "User case was escalated to"
+        },
+        "escalationReason": {
+            "type": "text",
+            "tooltip": "Reason for escalation"
+        },
+        "resolutionDetails": {
+            "type": "text",
+            "tooltip": "Details of how case was resolved"
+        },
+        "rootCause": {
+            "type": "enum",
+            "options": [
+                "",
+                "System Issue",
+                "Process Gap",
+                "Staff Error",
+                "Customer Misunderstanding",
+                "Third Party Issue",
+                "Policy Issue",
+                "Other"
+            ],
+            "tooltip": "Root cause of the issue"
+        },
+        "customerSatisfaction": {
+            "type": "enum",
+            "options": [
+                "",
+                "Very Satisfied",
+                "Satisfied",
+                "Neutral",
+                "Dissatisfied",
+                "Very Dissatisfied"
+            ],
+            "style": {
+                "Very Satisfied": "success",
+                "Satisfied": "success",
+                "Neutral": "default",
+                "Dissatisfied": "warning",
+                "Very Dissatisfied": "danger"
+            },
+            "tooltip": "Customer satisfaction after resolution"
+        },
+        "financialImpact": {
+            "type": "currency",
+            "min": 0,
+            "tooltip": "Financial impact of the issue"
+        },
+        "compensationAmount": {
+            "type": "currency",
+            "min": 0,
+            "tooltip": "Compensation provided to customer"
+        },
+        "cCaseNumber": {
+            "type": "varchar",
+            "maxLength": 20,
+            "readOnly": true,
+            "tooltip": "Custom case number"
+        },
+        "reportableToCBSL": {
+            "type": "bool",
+            "default": false,
+            "tooltip": "Requires CBSL regulatory reporting"
         }
+    },
+    "links": {
+        "assignedBranch": {
+            "type": "belongsTo",
+            "entity": "Branch",
+            "foreign": "cases"
+        },
+        "escalatedTo": {
+            "type": "belongsTo",
+            "entity": "User"
+        }
+    },
+    "formula": {
+        "timeToResolve": "ifThen(\n  priority == 'Urgent',\n  2,\n  ifThen(\n    priority == 'High',\n    8,\n    ifThen(\n      priority == 'Normal',\n      24,\n      72\n    )\n  )\n)"
     }
 }

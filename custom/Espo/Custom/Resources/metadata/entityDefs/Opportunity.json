@@ -8,19 +8,40 @@
         "loanAmount": {
             "type": "currency",
             "min": 0,
-            "required": true
+            "required": true,
+            "audited": true,
+            "tooltip": "Requested loan amount"
+        },
+        "approvedAmount": {
+            "type": "currency",
+            "min": 0,
+            "audited": true,
+            "tooltip": "Approved loan amount (may differ from requested)"
         },
         "loanTenure": {
             "type": "int",
             "min": 1,
+            "max": 360,
             "required": true,
             "tooltip": "Tenure in months"
         },
         "interestRate": {
             "type": "float",
             "min": 0,
+            "max": 100,
             "required": true,
-            "tooltip": "Interest rate %"
+            "tooltip": "Annual interest rate %"
+        },
+        "interestType": {
+            "type": "enum",
+            "options": [
+                "",
+                "Fixed",
+                "Floating",
+                "Variable"
+            ],
+            "default": "Fixed",
+            "tooltip": "Interest rate type"
         },
         "emi": {
             "type": "currency",
@@ -28,33 +49,404 @@
             "readOnly": true,
             "tooltip": "Estimated Monthly Installment"
         },
-        "applicationStatus": {
+        "totalInterest": {
+            "type": "currency",
+            "readOnly": true,
+            "tooltip": "Total interest payable over loan tenure"
+        },
+        "totalRepayableAmount": {
+            "type": "currency",
+            "readOnly": true,
+            "tooltip": "Total amount to be repaid (principal + interest)"
+        },
+        "loanStage": {
             "type": "enum",
             "options": [
-                "New",
-                "Credit Check",
-                "Verification",
+                "Inquiry",
+                "Application Submitted",
+                "Documentation",
+                "Credit Assessment",
                 "Underwriting",
-                "Approved",
+                "Credit Approval",
+                "Documentation & Legals",
+                "Disbursement Ready",
+                "Disbursed",
                 "Rejected",
-                "Disbursed"
+                "Withdrawn"
             ],
-            "default": "New",
+            "default": "Inquiry",
+            "required": true,
+            "audited": true,
             "style": {
-                "New": "default",
-                "Credit Check": "info",
-                "Verification": "primary",
-                "Underwriting": "warning",
-                "Approved": "success",
+                "Inquiry": "default",
+                "Application Submitted": "primary",
+                "Documentation": "warning",
+                "Credit Assessment": "info",
+                "Underwriting": "info",
+                "Credit Approval": "success",
+                "Documentation & Legals": "warning",
+                "Disbursement Ready": "success",
+                "Disbursed": "success",
                 "Rejected": "danger",
-                "Disbursed": "success"
-            }
+                "Withdrawn": "danger"
+            },
+            "displayAsLabel": true,
+            "tooltip": "Current stage in loan pipeline"
+        },
+        "stageEnteredDate": {
+            "type": "datetime",
+            "tooltip": "When current stage was entered"
+        },
+        "daysInCurrentStage": {
+            "type": "int",
+            "readOnly": true,
+            "tooltip": "Days since entering current stage"
+        },
+        "creditApprovalStatus": {
+            "type": "enum",
+            "options": [
+                "",
+                "Pending",
+                "In Review",
+                "Approved",
+                "Conditional Approval",
+                "Rejected"
+            ],
+            "default": "Pending",
+            "audited": true,
+            "style": {
+                "Pending": "default",
+                "In Review": "primary",
+                "Approved": "success",
+                "Conditional Approval": "warning",
+                "Rejected": "danger"
+            },
+            "displayAsLabel": true,
+            "tooltip": "Credit committee approval status"
+        },
+        "approvalAuthority": {
+            "type": "enum",
+            "options": [
+                "",
+                "Branch Manager",
+                "Regional Manager",
+                "Credit Manager",
+                "Credit Committee",
+                "CEO"
+            ],
+            "tooltip": "Who has authority to approve this amount"
+        },
+        "approvedBy": {
+            "type": "link",
+            "entity": "User",
+            "tooltip": "Approving officer"
+        },
+        "approvalDate": {
+            "type": "date",
+            "audited": true,
+            "tooltip": "Date of approval"
+        },
+        "approvalRemarks": {
+            "type": "text",
+            "tooltip": "Approval notes and conditions"
+        },
+        "deviations": {
+            "type": "text",
+            "tooltip": "Policy deviations requiring special approval"
+        },
+        "conditions": {
+            "type": "text",
+            "tooltip": "Conditions to be met before disbursement"
+        },
+        "applicationNumber": {
+            "type": "varchar",
+            "maxLength": 50,
+            "readOnly": true,
+            "tooltip": "System-generated application number"
+        },
+        "applicationDate": {
+            "type": "date",
+            "required": true,
+            "audited": true,
+            "tooltip": "Date of formal application"
+        },
+        "targetDisbursementDate": {
+            "type": "date",
+            "tooltip": "Expected disbursement date"
+        },
+        "actualDisbursementDate": {
+            "type": "date",
+            "audited": true,
+            "tooltip": "Actual disbursement date"
+        },
+        "disbursementMethod": {
+            "type": "enum",
+            "options": [
+                "",
+                "Bank Transfer",
+                "Cheque",
+                "Cash",
+                "Direct Payment to Vendor"
+            ],
+            "default": "Bank Transfer",
+            "tooltip": "How loan will be disbursed"
+        },
+        "disbursementBankName": {
+            "type": "varchar",
+            "maxLength": 100,
+            "tooltip": "Bank for disbursement"
+        },
+        "disbursementAccountNumber": {
+            "type": "varchar",
+            "maxLength": 50,
+            "isPersonalData": true,
+            "tooltip": "Account number for disbursement"
+        },
+        "disbursementReference": {
+            "type": "varchar",
+            "maxLength": 100,
+            "tooltip": "Payment reference number"
+        },
+        "netDisbursementAmount": {
+            "type": "currency",
+            "readOnly": true,
+            "tooltip": "Amount after deducting upfront fees"
+        },
+        "creditScore": {
+            "type": "int",
+            "min": 300,
+            "max": 900,
+            "tooltip": "Credit bureau score"
+        },
+        "creditBureauReportDate": {
+            "type": "date",
+            "tooltip": "Date of credit report"
+        },
+        "foir": {
+            "type": "float",
+            "readOnly": true,
+            "tooltip": "Fixed Obligation to Income Ratio %"
+        },
+        "dti": {
+            "type": "float",
+            "readOnly": true,
+            "tooltip": "Debt to Income Ratio %"
+        },
+        "riskCategory": {
+            "type": "enum",
+            "options": [
+                "",
+                "Low Risk",
+                "Medium Risk",
+                "High Risk",
+                "Very High Risk"
+            ],
+            "style": {
+                "Low Risk": "success",
+                "Medium Risk": "warning",
+                "High Risk": "danger",
+                "Very High Risk": "danger"
+            },
+            "displayAsLabel": true,
+            "tooltip": "Risk classification"
+        },
+        "isSecuredLoan": {
+            "type": "bool",
+            "default": false,
+            "tooltip": "Is this a secured loan"
+        },
+        "collateralType": {
+            "type": "enum",
+            "options": [
+                "",
+                "Property",
+                "Vehicle",
+                "Gold",
+                "Fixed Deposit",
+                "Shares",
+                "Equipment",
+                "Other"
+            ],
+            "tooltip": "Type of collateral"
+        },
+        "collateralDescription": {
+            "type": "text",
+            "tooltip": "Details of collateral"
+        },
+        "collateralValue": {
+            "type": "currency",
+            "tooltip": "Estimated market value"
+        },
+        "loanToValueRatio": {
+            "type": "float",
+            "readOnly": true,
+            "tooltip": "LTV ratio %"
+        },
+        "processingFee": {
+            "type": "currency",
+            "default": 0,
+            "tooltip": "Processing fee amount"
+        },
+        "processingFeePercentage": {
+            "type": "float",
+            "tooltip": "Processing fee as % of loan"
+        },
+        "stampDuty": {
+            "type": "currency",
+            "default": 0,
+            "tooltip": "Stamp duty amount"
+        },
+        "insurancePremium": {
+            "type": "currency",
+            "default": 0,
+            "tooltip": "Insurance premium if applicable"
+        },
+        "totalUpfrontCharges": {
+            "type": "currency",
+            "readOnly": true,
+            "tooltip": "Sum of all upfront fees"
+        },
+        "kycStatus": {
+            "type": "enum",
+            "options": [
+                "",
+                "Not Started",
+                "In Progress",
+                "Pending Documents",
+                "Completed",
+                "Failed"
+            ],
+            "default": "Not Started",
+            "style": {
+                "Not Started": "default",
+                "In Progress": "primary",
+                "Pending Documents": "warning",
+                "Completed": "success",
+                "Failed": "danger"
+            },
+            "displayAsLabel": true,
+            "tooltip": "KYC verification status"
+        },
+        "documentChecklistComplete": {
+            "type": "bool",
+            "default": false,
+            "readOnly": true,
+            "tooltip": "All documents verified"
+        },
+        "legalVerificationStatus": {
+            "type": "enum",
+            "options": [
+                "",
+                "Not Required",
+                "Pending",
+                "In Progress",
+                "Completed",
+                "Issues Found"
+            ],
+            "default": "Not Required",
+            "tooltip": "Legal verification status"
+        },
+        "valuationStatus": {
+            "type": "enum",
+            "options": [
+                "",
+                "Not Required",
+                "Pending",
+                "Scheduled",
+                "Completed",
+                "Re-valuation Needed"
+            ],
+            "default": "Not Required",
+            "tooltip": "Collateral valuation status"
+        },
+        "rejectionReason": {
+            "type": "enum",
+            "options": [
+                "",
+                "Low Credit Score",
+                "Insufficient Income",
+                "High DTI/FOIR",
+                "Negative Credit History",
+                "Incomplete Documentation",
+                "Collateral Issues",
+                "Policy Violation",
+                "Fraud Suspicion",
+                "Customer Withdrew",
+                "Competitor Offer",
+                "Other"
+            ],
+            "tooltip": "Reason for rejection"
+        },
+        "rejectionRemarks": {
+            "type": "text",
+            "tooltip": "Additional rejection details"
+        },
+        "loanAccountNumber": {
+            "type": "varchar",
+            "maxLength": 50,
+            "tooltip": "Loan account number after disbursement"
+        },
+        "originationChannel": {
+            "type": "enum",
+            "options": [
+                "",
+                "Branch Walk-in",
+                "Field Agent",
+                "DSA/Broker",
+                "Website",
+                "Mobile App",
+                "Phone Call",
+                "Partner Referral",
+                "Existing Customer",
+                "Campaign",
+                "Other"
+            ],
+            "required": true,
+            "tooltip": "How this opportunity was sourced"
+        },
+        "assignedBranch": {
+            "type": "link",
+            "entity": "Branch",
+            "tooltip": "Branch handling this opportunity"
+        },
+        "cbslReportingCategory": {
+            "type": "enum",
+            "options": [
+                "",
+                "Consumer Credit",
+                "Business Credit",
+                "Lease Finance",
+                "Pawning",
+                "Other"
+            ],
+            "tooltip": "Central Bank reporting category"
+        },
+        "relatedPartyTransaction": {
+            "type": "bool",
+            "default": false,
+            "tooltip": "Is this a related party loan"
         }
     },
     "links": {
         "loanProduct": {
             "type": "belongsTo",
             "entity": "LoanProduct"
+        },
+        "approvedBy": {
+            "type": "belongsTo",
+            "entity": "User"
+        },
+        "assignedBranch": {
+            "type": "belongsTo",
+            "entity": "Branch",
+            "foreign": "opportunities"
         }
+    },
+    "formula": {
+        "daysInCurrentStage": "ifThen(\n  stageEnteredDate,\n  datetime\\diff(stageEnteredDate, datetime\\now(), 'days'),\n  0\n)",
+        "loanToValueRatio": "ifThen(\n  collateralValue > 0,\n  (loanAmount / collateralValue) * 100,\n  0\n)",
+        "totalUpfrontCharges": "processingFee + stampDuty + insurancePremium",
+        "netDisbursementAmount": "approvedAmount - totalUpfrontCharges",
+        "totalRepayableAmount": "loanAmount + totalInterest"
     }
 }

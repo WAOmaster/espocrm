@@ -1,0 +1,25 @@
+{
+    "fields": {
+        "cCLoanStage": "Loan Stage"
+    },
+    "options": {
+        "cCLoanStage": {
+            "Application Created": "Application Created",
+            "Document Collection": "Document Collection",
+            "Credit Assessment": "Credit Assessment",
+            "Security Valuation": "Security Valuation",
+            "Pending Approval - Branch": "Pending Approval - Branch",
+            "Pending Approval - Regional": "Pending Approval - Regional",
+            "Pending Approval - Committee": "Pending Approval - Committee",
+            "Approved - Agreement Pending": "Approved - Agreement Pending",
+            "Agreement Signed": "Agreement Signed",
+            "Pending Disbursement": "Pending Disbursement",
+            "Disbursed - Won": "Disbursed - Won",
+            "Rejected - Lost": "Rejected - Lost",
+            "Cancelled - Lost": "Cancelled - Lost"
+        }
+    },
+    "labels": {
+        "Select Loan Stage": "Select Loan Stage"
+    }
+}

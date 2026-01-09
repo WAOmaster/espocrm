@@ -365,6 +365,64 @@
             "type": "link",
             "entity": "Lead",
             "tooltip": "Original lead if this is a duplicate"
+        },
+        "slaDeadline": {
+            "type": "datetime",
+            "tooltip": "SLA deadline for contacting this lead"
+        },
+        "slaStatus": {
+            "type": "enum",
+            "options": [
+                "",
+                "On Track",
+                "Warning",
+                "Breached"
+            ],
+            "default": "On Track",
+            "style": {
+                "On Track": "success",
+                "Warning": "warning",
+                "Breached": "danger"
+            },
+            "displayAsLabel": true,
+            "tooltip": "SLA status based on deadline vs current time"
+        },
+        "assignedBranch": {
+            "type": "link",
+            "entity": "Branch",
+            "tooltip": "Branch handling this lead"
+        },
+        "district": {
+            "type": "enum",
+            "options": [
+                "",
+                "Colombo",
+                "Gampaha",
+                "Kalutara",
+                "Kandy",
+                "Matale",
+                "Nuwara Eliya",
+                "Galle",
+                "Matara",
+                "Hambantota",
+                "Jaffna",
+                "Kilinochchi",
+                "Mannar",
+                "Mullaitivu",
+                "Vavuniya",
+                "Trincomalee",
+                "Batticaloa",
+                "Ampara",
+                "Kurunegala",
+                "Puttalam",
+                "Anuradhapura",
+                "Polonnaruwa",
+                "Badulla",
+                "Monaragala",
+                "Ratnapura",
+                "Kegalle"
+            ],
+            "tooltip": "District for territory-based assignment"
         }
     },
     "links": {
@@ -402,6 +460,11 @@
             "type": "hasMany",
             "entity": "Lead",
             "foreign": "duplicateOf"
+        },
+        "assignedBranch": {
+            "type": "belongsTo",
+            "entity": "Branch",
+            "foreign": "leads"
         }
     },
     "indexes": {

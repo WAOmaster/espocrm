@@ -1,0 +1,31 @@
+Task Name,Description,Parent Task,Priority,Tags
+1. Data Model & Field Customization,Epic: Implementation of new fields for Loan Products Financial Profiles and Security.[cite: 99],,High,Database
+Add Loan Product Fields,"Create fields: loanProductType (Enum), loanAmount (Currency), loanTenure (Int), interestRate (Float), processingFee (Currency), insurancePremium (Currency). [cite: 105-151]",1. Data Model & Field Customization,High,
+Add Financial Profile Fields,"Create fields: applicantMonthlyIncome (Currency), employmentType (Enum), creditScore (Int), calculatedFOIR (Float), calculatedDTI (Float). [cite: 157-179]",1. Data Model & Field Customization,High,
+Add Security & Collateral Fields,"Create fields: securityType (Enum: Gold, Vehicle, Property, etc.), securityValue (Currency), ltvRatio (Float), securityDescription (Text). [cite: 180-204]",1. Data Model & Field Customization,Normal,
+Add Guarantor Info Fields,"Create fields: hasGuarantor (Bool), guarantorName, guarantorNIC, guarantorIncome, guarantorContact, guarantorRelationship. [cite: 206-220, 532-558]",1. Data Model & Field Customization,Normal,
+Add Approval Workflow Fields,"Create fields: approvalStatus (Enum), approvalLevel (Enum), branchManagerApprover (Link), regionalManagerApprover (Link), creditCommitteeApprover, rejectionReason. [cite: 222-278]",1. Data Model & Field Customization,High,
+Add Documentation Fields,"Create fields: documentChecklistStatus (Enum), documentsReceived (Multi-Enum), agreementPrepared (Bool), agreementSignedDate (Date). [cite: 284-305]",1. Data Model & Field Customization,Normal,
+Add Disbursement Fields,"Create fields: disbursementStatus (Enum), disbursementDate, disbursementAmount, disbursementMethod (Enum), loanAccountNumber, cbsReferenceNumber. [cite: 307-342]",1. Data Model & Field Customization,High,
+Add Timeline Tracking Fields,"Create fields: daysInPipeline (Formula), daysToApproval (Int), daysToDisbursement (Int), sourceLeadId (Link to Lead). [cite: 344-360]",1. Data Model & Field Customization,Low,
+2. Pipeline & Stage Configuration,Epic: Replacing default stages with Financial Services specific stages and probability mapping.[cite: 368],,High,Configuration
+Configure New Pipeline Stages,"Replace default stages with 14-step Financial flow: 1. Application Created through 14. Cancelled. [cite: 374-398, 753-775]",2. Pipeline & Stage Configuration,High,
+Map Stage Probabilities,"Configure probability map: App Created (10%), Credit Assessment (30%), Approval Granted (85%), Disbursed (100%). [cite: 403-422, 776-793]",2. Pipeline & Stage Configuration,Normal,
+3. Automation Formulas & BPM ,Epic: Implementing calculations and process workflows.[cite: 425 795],,High,Backend
+Implement EMI Calculation Formula,Implement formula for emiAmount: P*r*(1+r)^n / ((1+r)^n - 1). See Source 800 for JS code. [cite: 796-818],3. Automation Formulas & BPM,High,
+Implement LTV & Cost Formulas,Implement ltvRatio: (amount / securityValue) * 100. Implement totalLoanCost: (emi * tenure) + fees. [cite: 819-833],3. Automation Formulas & BPM,Normal,
+Workflow 1: Lead to Opp Conversion,"Trigger: Lead Status = Qualified AND Eligible. Actions: Create Opp, Copy Loan Details, Link Contact, Set Stage to Application Created. [cite: 839-858, 983-991]",3. Automation Formulas & BPM,High,
+Workflow 2: Document Collection,"Trigger: Stage = Document Collection. Task: 'Collect Documents' (+2 days). Auto-progress when checklist = Complete. [cite: 863-879, 993-998]",3. Automation Formulas & BPM,Normal,
+Workflow 3: Credit Assessment Logic,Gate: IF CreditScore >= 650 AND FOIR <= 40 AND DTI <= 50 -> Move to Security Valuation. ELSE -> Move to Rejected. [cite: 892-897],3. Automation Formulas & BPM,High,
+Workflow 4: Security Valuation,"If Security Type != None, schedule valuation. Verify LTV < 90%. [cite: 902-906]",3. Automation Formulas & BPM,Normal,
+Workflow 5: Approval Routing Tier 1,"IF Amount < 500k: Route to Branch Manager. [cite: 917, 922-923]",3. Automation Formulas & BPM,High,
+Workflow 5: Approval Routing Tier 2,"IF Amount 500k - 2M: Route to Regional Manager. [cite: 917, 924-925]",3. Automation Formulas & BPM,High,
+Workflow 5: Approval Routing Tier 3,"IF Amount > 2M: Route to Credit Committee. [cite: 917, 926-927]",3. Automation Formulas & BPM,High,
+Workflow 6: SLA Monitoring,Daily Check: IF daysInPipeline > 30 -> Email Regional Manager. IF > 45 -> High Priority Task for Branch Manager. [cite: 1007-1011],3. Automation Formulas & BPM,Low,
+4. UI Layout & Presentation,Epic: Configuring the Detail View layout panels.[cite: 1020],,Normal,Frontend
+Configure Overview Panel,"Rows: Name, Stage, Approval Status, Probability, Close Date, Contact, Assigned User. [cite: 1030-1048]",4. UI Layout & Presentation,Normal,
+Configure Loan Details Panel,"Rows: Product Type, Amount, Tenure, Rate, EMI, Total Cost, Purpose. [cite: 1049-1076]",4. UI Layout & Presentation,Normal,
+Configure Financial Profile Panel,"Rows: Income, Obligations, Emp Type, Employer, Credit Score, FOIR, DTI. [cite: 1077-1095]",4. UI Layout & Presentation,Normal,
+Configure Security Panel,"Rows: Type, Value, LTV, Guarantor Details (Name, NIC, Income, Contact). [cite: 1096-1117]",4. UI Layout & Presentation,Normal,
+Configure Approval Workflow Panel,"Rows: Approval Level, Branch Approver/Date/Remarks, Regional Approver/Date/Remarks, Rejection Reason. [cite: 1118-1145]",4. UI Layout & Presentation,Normal,
+Configure Disbursement Panel,"Rows: Status, Date, Amount, Method, Bank Details, Loan Account Number. [cite: 1164-1185]",4. UI Layout & Presentation,Normal,
