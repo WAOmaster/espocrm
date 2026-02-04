@@ -8,7 +8,7 @@ try {
     /** @var \Espo\Core\Utils\Config $config */
     $config = $container->get('config');
     
-    $apiKey = 'AIzaSyDD6XRNePz8jeSxnjq7BvllWJx5S2J1XxY';
+    $apiKey = 'geminiApiKey';
     
     $config->set('geminiApiKey', $apiKey);
     $config->save();
